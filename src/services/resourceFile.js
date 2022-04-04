@@ -36,7 +36,8 @@ exports.readByID = async function (id) {
 
 exports.update = async function () {
   try {
-    await ResourceFileModel.findByIdAndUpdate({});
+    let result = await ResourceFileModel.findByIdAndUpdate({});
+    return result;
   } catch (err) {
     return err;
   }

@@ -4,10 +4,10 @@ exports.create = async function (name, email, subject, message) {
   try {
     let result = await ContactModel.insertMany([
       {
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
+        name,
+        email,
+        subject,
+        message,
       },
     ]);
     return result;
@@ -36,7 +36,8 @@ exports.readByID = async function (id) {
 
 exports.update = async function () {
   try {
-    await ContactModel.findByIdAndUpdate({});
+    let result = await ContactModel.findByIdAndUpdate({});
+    return result;
   } catch (err) {
     return err;
   }

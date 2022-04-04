@@ -4,7 +4,7 @@ let resourceFileScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   modified_at: { type: Date },
   deleted_at: { type: Date },
-  filename: {
+  file_name: {
     type: String,
     required: true,
   },
@@ -15,13 +15,12 @@ let resourceFileScheme = new Schema({
   size: {
     type: int,
   },
-  resourceID: {
+  resource_ID: {
     type: int,
     required: true,
   },
   downloaded: {
     type: int,
-    require: true,
   },
 });
 module.exports = mongoose.model("resourceFile", resourceFileScheme);

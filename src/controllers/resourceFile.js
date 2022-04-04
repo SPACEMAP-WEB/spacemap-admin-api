@@ -1,15 +1,17 @@
-const ResourceService = require("../services/resource");
+const ResourceFileService = require("../services/resourceFile");
 
 exports.createModel = async function (req, res, next) {
   try {
-    let resourceModel = await ResourceService.create(
-      req.body.title,
-      req.body.content,
-      req.body.board_type
+    let resourceFileModel = await ResourceFileService.create(
+      req.body.file_name,
+      req.body.type,
+      req.body.size,
+      req.body.resource_ID,
+      req.body.size
     );
     return res.status(200).json({
       status: 200,
-      data: resourceModel,
+      data: resourceFileModel,
       message: "Succesfully Model Created",
     });
   } catch (err) {
@@ -18,10 +20,10 @@ exports.createModel = async function (req, res, next) {
 };
 exports.readModels = async function (req, res, next) {
   try {
-    let resourceModels = await ResourceService.read();
+    let resourceFileModels = await ResourceFileService.read();
     return res.status(200).json({
       status: 200,
-      data: resourceModels,
+      data: resourceFileModels,
       message: "Succesfully Models Retrieved",
     });
   } catch (err) {
@@ -31,10 +33,10 @@ exports.readModels = async function (req, res, next) {
 
 exports.readModel = async function (req, res, next) {
   try {
-    let resourceModel = await ResourceService.readByID(req.params.id);
+    let resourceFileModel = await ResourceFileService.readByID(req.params.id);
     return res.status(200).json({
       status: 200,
-      data: resourceModel,
+      data: resourceFileModel,
       message: "Succesfully Model Retrieved",
     });
   } catch (err) {
@@ -44,10 +46,10 @@ exports.readModel = async function (req, res, next) {
 
 exports.updateModel = async function (req, res, next) {
   try {
-    let resourceModel = await ResourceService.update(req.params.id);
+    let resourceFileModel = await ResourceFileService.update(req.params.id);
     return res.status(200).json({
       status: 200,
-      data: resourceModel,
+      data: resourceFileModel,
       message: "Succesfully Model Updated",
     });
   } catch (err) {
@@ -57,7 +59,7 @@ exports.updateModel = async function (req, res, next) {
 
 exports.deleteModel = async function (req, res, next) {
   try {
-    await ResourceService.delete(req.params.id);
+    await ResourceFileService.delete(req.params.id);
     return res.status(200).json({
       status: 200,
       message: "Succesfully Model Deleted",

@@ -1,7 +1,7 @@
 {
-  "script":
+  "scripts":
   {
-    "start:dev" : "nodemon app.js"
+    "start:dev" : "nodemon ./src/app.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
