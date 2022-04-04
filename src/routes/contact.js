@@ -1,8 +1,6 @@
 const ContactController = require("../controllers/contact");
-const ContatModel = require("../models/contact");
-
 const router = require("express").Router();
-const application = app;
+
 router.get("/", async function (req, res) {});
 
 router.get("/:id", async function (req, res) {
