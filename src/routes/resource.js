@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const application = app;
+// const ResourceController = require("../controllers/resource");
+
 router.get("/", async function (req, res) {
   res.json();
 });

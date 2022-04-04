@@ -44,20 +44,19 @@ exports.updateModel = async function (req, res, next) {
     return res.status(200).json({
       status: 200,
       data: model,
-      message: "Succesfully Model Retrieved",
+      message: "Succesfully Model Updated",
     });
   } catch (err) {
     return res.status(400).json({ status: 400, message: err.message });
   }
 };
 
-exports.updateModel = async function (req, res, next) {
+exports.deleteModel = async function (req, res, next) {
   try {
-    let model = await UserService.delete(req.params.id);
+    await UserService.delete(req.params.id);
     return res.status(200).json({
       status: 200,
-      data: model,
-      message: "Succesfully Model Retrieved",
+      message: "Succesfully Model Deleted",
     });
   } catch (err) {
     return res.status(400).json({ status: 400, message: err.message });
