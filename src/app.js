@@ -61,7 +61,7 @@ app.use("/resource-files", resourceFile);
 app.use("/resource-file", resourceFile);
 
 const user = require("./routes/user");
-app.use("/usesr", user);
+app.use("/users", user);
 app.use("/user", user);
 //-----Routers----
 
