@@ -1,4 +1,4 @@
-module.exports = function (app, fs) {
+module.exports = function () {
   const router = require("express").Router();
   const application = app;
   router.get("/", async function (req, res) {

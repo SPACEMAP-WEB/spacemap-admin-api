@@ -4,19 +4,21 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const dotenv = require("dotenv");
 const path = require("path");
-var favicon = require("serve-favicon");
+const favicon = require("serve-favicon");
 const fs = require("fs");
-const mongoConnect = require("./models");
+const mongoConnect = require("./loaders/mongoose");
 dotenv.config();
 
 const app = express();
 
 app.use(morgan("common"));
-// app.use(express.json({ limit: '1gb', extended: true }));
-// app.use(express.urlencoded({ limit: '1gb', extended: true, parameterLimit: 50000000 }));
+app.use(express.json({ limit: "1gb", extended: true }));
+app.use(
+  express.urlencoded({ limit: "1gb", extended: true, parameterLimit: 50000000 })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(favicon(path.join(__dirname, "public/images", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "../public/images", "favicon.ico")));
 app.set("trust proxy", "loopback");
 // app.set('views', [__dirname + '/views', __dirname + '/views/subpages_dcs', __dirname + '/views/subpages_launch']);
 
@@ -43,22 +45,22 @@ var server = app.listen(port, function () {
 });
 
 //-----Routers----
-const mainrouter = require("./routes/main")(app, fs);
-app.use("/", mainrouter);
+const adminRouter = require("./routes/admin");
+app.use("/", adminRouter);
 
-const contact = require("./routes/contact")(app, fs);
+const contact = require("./routes/contact");
 app.use("/contact", contact);
 app.use("/contacts", contact);
 
-const resource = require("./routes/resource")(app, fs);
+const resource = require("./routes/resource");
 app.use("/resources", resource);
 app.use("/resource", resource);
 
-const resourceFile = require("./routes/resourceFile")(app, fs);
+const resourceFile = require("./routes/resourceFile");
 app.use("/resource-files", resourceFile);
 app.use("/resource-file", resourceFile);
 
-const user = require("./routes/user")(app, fs);
+const user = require("./routes/user");
 app.use("/usesr", user);
 app.use("/user", user);
 //-----Routers----

@@ -1,4 +1,5 @@
 const ContactModel = require("../models/contact");
+
 exports.create = async function (name, email, subject, message) {
   try {
     let result = await ContactModel.insertMany([
