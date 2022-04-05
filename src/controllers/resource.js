@@ -1,11 +1,15 @@
-const UserService = require("../services/user");
+const ResourceService = require("../services/resource");
 
 exports.createModel = async function (req, res, next) {
   try {
-    let model = await UserService.create();
+    let resourceModel = await ResourceService.create(
+      req.body.title,
+      req.body.content,
+      req.body.board_type
+    );
     return res.status(200).json({
       status: 200,
-      data: model,
+      data: resourceModel,
       message: "Succesfully Model Created",
     });
   } catch (err) {
@@ -14,10 +18,10 @@ exports.createModel = async function (req, res, next) {
 };
 exports.readModels = async function (req, res, next) {
   try {
-    let models = await UserService.read();
+    let resourceModels = await ResourceService.read();
     return res.status(200).json({
       status: 200,
-      data: models,
+      data: resourceModels,
       message: "Succesfully Models Retrieved",
     });
   } catch (err) {
@@ -27,10 +31,10 @@ exports.readModels = async function (req, res, next) {
 
 exports.readModel = async function (req, res, next) {
   try {
-    let model = await UserService.readByID(req.params.id);
+    let resourceModel = await ResourceService.readByID(req.params.id);
     return res.status(200).json({
       status: 200,
-      data: model,
+      data: resourceModel,
       message: "Succesfully Model Retrieved",
     });
   } catch (err) {
@@ -40,10 +44,10 @@ exports.readModel = async function (req, res, next) {
 
 exports.updateModel = async function (req, res, next) {
   try {
-    let model = await UserService.update(req.params.id);
+    let resourceModel = await ResourceService.update(req.params.id);
     return res.status(200).json({
       status: 200,
-      data: model,
+      data: resourceModel,
       message: "Succesfully Model Updated",
     });
   } catch (err) {
@@ -53,7 +57,7 @@ exports.updateModel = async function (req, res, next) {
 
 exports.deleteModel = async function (req, res, next) {
   try {
-    await UserService.delete(req.params.id);
+    await ResourceService.delete(req.params.id);
     return res.status(200).json({
       status: 200,
       message: "Succesfully Model Deleted",

@@ -1,4 +1,4 @@
-const TemplateTemplateModel = require("../templateModels/template");
+const TemplateModel = require("../models/template");
 
 exports.create = async function () {
   try {

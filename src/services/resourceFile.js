@@ -1,13 +1,13 @@
-const ContactModel = require("../models/contact");
+const ResourceFileModel = require("../models/contact");
 
 exports.create = async function (name, email, subject, message) {
   try {
-    let result = await ContactModel.insertMany([
+    let result = await ResourceFileModel.insertMany([
       {
-        name,
-        email,
-        subject,
-        message,
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
       },
     ]);
     return result;
@@ -18,7 +18,7 @@ exports.create = async function (name, email, subject, message) {
 
 exports.read = async function () {
   try {
-    let result = await ContactModel.find({});
+    let result = await ResourceFileModel.find({});
     return result;
   } catch (err) {
     return err;
@@ -27,7 +27,7 @@ exports.read = async function () {
 
 exports.readByID = async function (id) {
   try {
-    let result = await ContactModel.findById({ id: id });
+    let result = await ResourceFileModel.findById({ id: id });
     return result;
   } catch (err) {
     return err;
@@ -36,7 +36,7 @@ exports.readByID = async function (id) {
 
 exports.update = async function () {
   try {
-    let result = await ContactModel.findByIdAndUpdate({});
+    let result = await ResourceFileModel.findByIdAndUpdate({});
     return result;
   } catch (err) {
     return err;
@@ -45,7 +45,7 @@ exports.update = async function () {
 
 exports.delete = async function () {
   try {
-    await ContactModel.findByIdAndDelete({});
+    await ResourceFileModel.findByIdAndDelete({});
   } catch (err) {
     return err;
   }
