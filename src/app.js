@@ -70,7 +70,6 @@ app.use((err, req, res, next) => {
     status,
     message,
   })
-  next()
 })
 
 app.use((_req, res, next) => {
