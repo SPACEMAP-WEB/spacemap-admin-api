@@ -64,18 +64,18 @@ app.use("/user", user);
 //-----Routers----
 
 app.use((err, req, res, next) => {
-  const status = err.status || 500
-  const message = err.message || 'Internal server error.'
+  const status = err.status || 500;
+  const message = err.message || "Internal server error.";
   res.status(status).json({
     status,
     message,
-  })
-})
+  });
+});
 
 app.use((_req, res, next) => {
   res.status(404).json({
     status: 404,
-    message: 'Not Found.',
-  })
-  next()
-})
+    message: "Not Found.",
+  });
+  next();
+});
