@@ -16,8 +16,7 @@ app.use(express.json({ limit: "1gb", extended: true }));
 app.use(
   express.urlencoded({ limit: "1gb", extended: true, parameterLimit: 50000000 })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 app.use(favicon(path.join(__dirname, "../public/images", "favicon.ico")));
 app.set("trust proxy", "loopback");
 // app.set('views', [__dirname + '/views', __dirname + '/views/subpages_dcs', __dirname + '/views/subpages_launch']);

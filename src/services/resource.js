@@ -2,6 +2,7 @@ const ResourceModel = require("../models/resource");
 
 exports.create = async function (title, content, board_type) {
   try {
+    console.log("!");
     let resourceModels = await ResourceModel.insertMany([
       {
         title,
@@ -9,7 +10,7 @@ exports.create = async function (title, content, board_type) {
         board_type,
       },
     ]);
-    console.log("!");
+
     console.log(resourceModels);
     return resourceModels;
   } catch (err) {
