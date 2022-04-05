@@ -1,12 +1,13 @@
 {
   "scripts": {
-    "start:dev": "nodemon ./src/app.js"
+    "start:dev": "nodemon ./src/app.js --ignore ./admin.information.json"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose-sequence": "^5.3.1",
     "morgan": "^1.10.0",
     "serve-favicon": "^2.5.0"
