@@ -1,55 +1,31 @@
 const ResourceModel = require("../models/resource");
 
 exports.create = async function (title, content, board_type) {
-  try {
-    console.log("!");
-    let resourceModels = await ResourceModel.insertMany([
-      {
-        title,
-        content,
-        board_type,
-      },
-    ]);
-
-    console.log(resourceModels);
-    return resourceModels;
-  } catch (err) {
-    return err;
-  }
+  let resourceModels = await ResourceModel.insertMany([
+    {
+      title,
+      content,
+      board_type,
+    },
+  ]);
+  return resourceModels;
 };
 
 exports.read = async function () {
-  try {
-    let resourceModels = await ResourceModel.find({});
-    console.log(result);
-    return resourceModels;
-  } catch (err) {
-    return err;
-  }
+  let resourceModels = await ResourceModel.find({});
+  return resourceModels;
 };
 
 exports.readByID = async function (id) {
-  try {
-    let resourceModel = await ResourceModel.findById({ id: id });
-    return resourceModel;
-  } catch (err) {
-    return err;
-  }
+  let resourceModel = await ResourceModel.findById({ id: id });
+  return resourceModel;
 };
 
 exports.update = async function (id) {
-  try {
-    let resourceModel = await ResourceModel.findByIdAndUpdate({ id });
-    return resourceModel;
-  } catch (err) {
-    return err;
-  }
+  let resourceModel = await ResourceModel.findByIdAndUpdate({ id });
+  return resourceModel;
 };
 
 exports.delete = async function (id) {
-  try {
-    await ResourceModel.findByIdAndDelete({ id });
-  } catch (err) {
-    return err;
-  }
+  await ResourceModel.findByIdAndDelete({ id });
 };

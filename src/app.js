@@ -5,7 +5,7 @@ const session = require("express-session");
 const path = require("path");
 const favicon = require("serve-favicon");
 const fs = require("fs");
-const mongoConnect = require("./loaders/mongoose");
+const mongoConnect = require("./lib/mongoose");
 require("dotenv").config();
 
 const app = express();

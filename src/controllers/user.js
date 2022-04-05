@@ -1,64 +1,39 @@
 const UserService = require("../services/user");
 
 exports.createModel = async function (req, res, next) {
-  try {
-    let model = await UserService.create();
-    return res.status(200).json({
-      status: 200,
-      data: model,
-      message: "Succesfully Model Created",
-    });
-  } catch (err) {
-    return res.status(400).json({ status: 400, message: err.message });
-  }
+  let model = await UserService.create();
+  return {
+    data: model,
+    message: "Succesfully Model Created",
+  };
 };
 exports.readModels = async function (req, res, next) {
-  try {
-    let models = await UserService.read();
-    return res.status(200).json({
-      status: 200,
-      data: models,
-      message: "Succesfully Models Retrieved",
-    });
-  } catch (err) {
-    return res.status(400).json({ status: 400, message: err.message });
-  }
+  let models = await UserService.read();
+  return {
+    data: models,
+    message: "Succesfully Models Retrieved",
+  };
 };
 
 exports.readModel = async function (req, res, next) {
-  try {
-    let model = await UserService.readByID(req.params.id);
-    return res.status(200).json({
-      status: 200,
-      data: model,
-      message: "Succesfully Model Retrieved",
-    });
-  } catch (err) {
-    return res.status(400).json({ status: 400, message: err.message });
-  }
+  let model = await UserService.readByID(req.params.id);
+  return {
+    data: model,
+    message: "Succesfully Model Retrieved",
+  };
 };
 
 exports.updateModel = async function (req, res, next) {
-  try {
-    let model = await UserService.update(req.params.id);
-    return res.status(200).json({
-      status: 200,
-      data: model,
-      message: "Succesfully Model Updated",
-    });
-  } catch (err) {
-    return res.status(400).json({ status: 400, message: err.message });
-  }
+  let model = await UserService.update(req.params.id);
+  return {
+    data: model,
+    message: "Succesfully Model Updated",
+  };
 };
 
 exports.deleteModel = async function (req, res, next) {
-  try {
-    await UserService.delete(req.params.id);
-    return res.status(200).json({
-      status: 200,
-      message: "Succesfully Model Deleted",
-    });
-  } catch (err) {
-    return res.status(400).json({ status: 400, message: err.message });
-  }
+  await UserService.delete(req.params.id);
+  return {
+    message: "Succesfully Model Deleted",
+  };
 };

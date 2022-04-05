@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const ResourceController = require("../controllers/resource");
+const wrapper = require("../lib/request-handler");
 
-router.post("/", ResourceController.createModel);
-router.get("/", ResourceController.readModels);
-router.get("/:id", ResourceController.readModel);
-router.put("/:id", ResourceController.updateModel);
-router.delete("/:id", ResourceController.deleteModel);
+router.post("/", wrapper(ResourceController.createModel));
+router.get("/", wrapper(ResourceController.readModels));
+router.get("/:id", wrapper(ResourceController.readModel));
+router.put("/:id", wrapper(ResourceController.updateModel));
+router.delete("/:id", wrapper(ResourceController.deleteModel));
 
 module.exports = router;

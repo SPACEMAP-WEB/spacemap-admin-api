@@ -1,52 +1,32 @@
 const ResourceFileModel = require("../models/contact");
 
 exports.create = async function (name, email, subject, message) {
-  try {
-    let result = await ResourceFileModel.insertMany([
-      {
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
-      },
-    ]);
-    return result;
-  } catch (err) {
-    return err;
-  }
+  let result = await ResourceFileModel.insertMany([
+    {
+      name,
+      email,
+      subject,
+      message,
+    },
+  ]);
+  return result;
 };
 
 exports.read = async function () {
-  try {
-    let result = await ResourceFileModel.find({});
-    return result;
-  } catch (err) {
-    return err;
-  }
+  let result = await ResourceFileModel.find({});
+  return result;
 };
 
 exports.readByID = async function (id) {
-  try {
-    let result = await ResourceFileModel.findById({ id: id });
-    return result;
-  } catch (err) {
-    return err;
-  }
+  let result = await ResourceFileModel.findById({ id: id });
+  return result;
 };
 
 exports.update = async function () {
-  try {
-    let result = await ResourceFileModel.findByIdAndUpdate({});
-    return result;
-  } catch (err) {
-    return err;
-  }
+  let result = await ResourceFileModel.findByIdAndUpdate({});
+  return result;
 };
 
 exports.delete = async function () {
-  try {
-    await ResourceFileModel.findByIdAndDelete({});
-  } catch (err) {
-    return err;
-  }
+  await ResourceFileModel.findByIdAndDelete({});
 };
