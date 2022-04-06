@@ -1,7 +1,18 @@
 const UserModel = require("../models/user");
 
-exports.create = async function () {
-  let userModels = await UserModel.insertMany({});
+exports.create = async function (id, user_type, password, firstname, lastname, affiliation, username, email) {
+  let userModels = await UserModel.insertMany([
+    {
+      id,
+      user_type,
+      password,
+      firstname,
+      lastname,
+      affiliation,
+      username,
+      email,
+    },
+  ]);
   return userModels;
 };
 
