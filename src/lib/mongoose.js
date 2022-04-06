@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
-const MONGO_URI =
-  "mongodb://spacemapdb:voronoi1!@docdb-2021-10-07-08-59-30.cluster-cciu2wubcctl.ap-northeast-2.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false";
+require("dotenv").config();
+
+const MONGO_URI = process.env.MONGO_INFO
 const connection = mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
