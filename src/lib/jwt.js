@@ -20,7 +20,10 @@ const verify = (token, refreshFlag) =>
         verified: false,
         body: err,
       }
-    return { verified: true }
+    return { 
+      verified: true,
+      body: decoded,
+    }
   })
 
 module.exports = {
