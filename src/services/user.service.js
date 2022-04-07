@@ -1,36 +1,25 @@
 const UserModel = require("../models/user.model");
 
-exports.create = async function (id, user_type, password, firstname, lastname, affiliation, username, email) {
-  let userModels = await UserModel.insertMany([
-    {
-      id,
-      user_type,
-      password,
-      firstname,
-      lastname,
-      affiliation,
-      username,
-      email,
-    },
-  ]);
+exports.create = async function (create) {
+  let userModels = await UserModel.create(create);
   return userModels;
-};
+}
 
 exports.read = async function () {
   let userModels = await UserModel.find({});
   return userModels;
 };
 
-exports.readByID = async function (id) {
-  let userModel = await UserModel.findById({ id: id });
+exports.readByID = async function (_id) {
+  let userModel = await UserModel.findById({ _id });
   return userModel;
 };
 
-exports.update = async function (id) {
-  let userModel = await UserModel.findByIdAndUpdate({ id });
+exports.update = async function (_id, update) {
+  let userModel = await UserModel.findByIdAndUpdate({ _id:_id} , update );
   return userModel;
 };
 
-exports.delete = async function (id) {
-  await UserModel.findByIdAndDelete({ id });
+exports.delete = async function (_id) {
+  await UserModel.findByIdAndDelete({ _id });
 };
