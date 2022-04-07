@@ -10,7 +10,7 @@ router.get('/', async function (_req, res) {
 })
 
 router.post('/login', wrapper(adminLoginControl))
-router.post('/logout', wrapper(adminLogoutControl))
+router.post('/logout', verifyToken, wrapper(adminLogoutControl))
 router.put('/password', verifyToken, wrapper(changePasswordControl))
 router.get('/accesstoken', wrapper(issueAccessToken))
 
