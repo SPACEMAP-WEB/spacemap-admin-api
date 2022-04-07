@@ -1,14 +1,33 @@
 const UserService = require("../services/user");
 
 exports.createModel = async function (req, res, next) {
-  let model = await UserService.create();
+  const {       
+    id,
+    user_type,
+    password,
+    firstname,
+    lastname,
+    affiliation,
+    username,
+    email
+  } = req.body
+  let model = await UserService.create(
+    id,
+    user_type,
+    password,
+    firstname,
+    lastname,
+    affiliation,
+    username,
+    email
+  );
   return {
     data: model,
     message: "Succesfully Model Created",
   };
 };
 exports.readModels = async function (req, res, next) {
-  let models = await UserService.read();
+  let models = await UserService.read();  
   return {
     data: models,
     message: "Succesfully Models Retrieved",
@@ -24,7 +43,17 @@ exports.readModel = async function (req, res, next) {
 };
 
 exports.updateModel = async function (req, res, next) {
-  let model = await UserService.update(req.params.id);
+  const {       
+    id,
+    user_type,
+    password,
+    firstname,
+    lastname,
+    affiliation,
+    username,
+    email
+  } = req.body
+  let model = await UserService.update(req.params.id, req.body);
   return {
     data: model,
     message: "Succesfully Model Updated",
