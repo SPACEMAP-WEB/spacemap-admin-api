@@ -1,25 +1,25 @@
 const UserService = require("../services/user");
 
 exports.createModel = async function (req, res, next) {
-  const {       
-    id,
-    user_type,
-    password,
-    firstname,
-    lastname,
-    affiliation,
-    username,
-    email
-  } = req.body
-  let model = await UserService.create(
-    id,
-    user_type,
-    password,
-    firstname,
-    lastname,
-    affiliation,
-    username,
-    email
+  // const {       
+  //   id,
+  //   user_type,
+  //   password,
+  //   firstname,
+  //   lastname,
+  //   affiliation,
+  //   username,
+  //   email
+  // } = req.body
+  let model = await UserService.create( req.body
+    // id,
+    // user_type,
+    // password,
+    // firstname,
+    // lastname,
+    // affiliation,
+    // username,
+    // email
   );
   return {
     data: model,
@@ -35,6 +35,7 @@ exports.readModels = async function (req, res, next) {
 };
 
 exports.readModel = async function (req, res, next) {
+  console.log(req.params.id);
   let model = await UserService.readByID(req.params.id);
   return {
     data: model,
@@ -43,16 +44,6 @@ exports.readModel = async function (req, res, next) {
 };
 
 exports.updateModel = async function (req, res, next) {
-  const {       
-    id,
-    user_type,
-    password,
-    firstname,
-    lastname,
-    affiliation,
-    username,
-    email
-  } = req.body
   let model = await UserService.update(req.params.id, req.body);
   return {
     data: model,
