@@ -4,6 +4,7 @@ let resourceFileScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   modified_at: { type: Date },
   deleted_at: { type: Date },
+  places_id: { required: true },
   file_name: {
     type: String,
     required: true,

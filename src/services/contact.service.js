@@ -1,5 +1,5 @@
 const { HttpException } = require("../common/exceptions");
-const ContactModel = require("../models/contact");
+const ContactModel = require("../models/contact.model");
 
 exports.create = async function (name, email, subject, message) {
   let result = await ContactModel.insertMany([

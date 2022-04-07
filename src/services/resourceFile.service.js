@@ -1,4 +1,4 @@
-const ResourceFileModel = require("../models/contact");
+const ResourceFileModel = require("../models/contact.model");
 
 exports.create = async function (name, email, subject, message) {
   let result = await ResourceFileModel.insertMany([

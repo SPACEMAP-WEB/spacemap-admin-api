@@ -1,4 +1,4 @@
-const ResourceFileService = require("../services/resourceFile");
+const ResourceFileService = require("../services/resourceFile.service");
 
 exports.createModel = async function (req, res, next) {
   let model = await ResourceFileService.create();

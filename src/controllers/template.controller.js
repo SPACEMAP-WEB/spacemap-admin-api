@@ -1,4 +1,4 @@
-const TemplateService = require("../services/template");
+const TemplateService = require("../services/template.service");
 
 exports.createModel = async function (req, res, next) {
   let model = await TemplateService.create();
