@@ -1,11 +1,10 @@
 const router = require('express').Router()
-const { adminLoginControl, adminLogoutControl, changePasswordControl  } = require('../controllers/admin')
+const { adminLoginControl, adminLogoutControl, changePasswordControl  } = require('../controllers/admin.controller')
 const { verifyToken, issueAccessToken } = require('../lib/auth-middleware')
 const wrapper = require('../lib/request-handler')
 
 router.get('/', async function (_req, res) {
   res.json({
-
   })
 })
 

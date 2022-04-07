@@ -1,14 +1,14 @@
-const UserService = require("../services/user");
+const ResourceService = require("../services/resource.service");
 
 exports.createModel = async function (req, res, next) {
-  let model = await UserService.create();
+  let model = await ResourceService.create(req.body);
   return {
     data: model,
     message: "Succesfully Model Created",
   };
 };
 exports.readModels = async function (req, res, next) {
-  let models = await UserService.read();
+  let models = await ResourceService.read();
   return {
     data: models,
     message: "Succesfully Models Retrieved",
@@ -16,7 +16,7 @@ exports.readModels = async function (req, res, next) {
 };
 
 exports.readModel = async function (req, res, next) {
-  let model = await UserService.readByID(req.params.id);
+  let model = await ResourceService.readByID(req.params.id);
   return {
     data: model,
     message: "Succesfully Model Retrieved",
@@ -24,7 +24,7 @@ exports.readModel = async function (req, res, next) {
 };
 
 exports.updateModel = async function (req, res, next) {
-  let model = await UserService.update(req.params.id);
+  let model = await ResourceService.update(req.params.id);
   return {
     data: model,
     message: "Succesfully Model Updated",
@@ -32,7 +32,7 @@ exports.updateModel = async function (req, res, next) {
 };
 
 exports.deleteModel = async function (req, res, next) {
-  await UserService.delete(req.params.id);
+  await ResourceService.delete(req.params.id);
   return {
     message: "Succesfully Model Deleted",
   };

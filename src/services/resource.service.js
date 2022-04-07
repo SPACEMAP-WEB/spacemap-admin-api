@@ -1,13 +1,7 @@
-const ResourceModel = require("../models/resource");
+const ResourceModel = require("../models/resource.model");
 
-exports.create = async function (title, content, board_type) {
-  let resourceModels = await ResourceModel.insertMany([
-    {
-      title,
-      content,
-      board_type,
-    },
-  ]);
+exports.create = async function (resource) {
+  let resourceModels = await ResourceModel.insertMany([resource]);
   return resourceModels;
 };
 

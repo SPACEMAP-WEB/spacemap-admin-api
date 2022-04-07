@@ -43,22 +43,22 @@ var server = app.listen(port, function () {
 });
 
 //-----Routers----
-const adminRouter = require("./routes/admin");
+const adminRouter = require("./routes/admin.route");
 app.use("/", adminRouter);
 
-const contact = require("./routes/contact");
+const contact = require("./routes/contact.route");
 app.use("/contact", contact);
 app.use("/contacts", contact);
 
-const resource = require("./routes/resource");
+const resource = require("./routes/resource.route");
 app.use("/resources", resource);
 app.use("/resource", resource);
 
-const resourceFile = require("./routes/resourceFile");
+const resourceFile = require("./routes/resourceFile.route");
 app.use("/resource-files", resourceFile);
 app.use("/resource-file", resourceFile);
 
-const user = require("./routes/user");
+const user = require("./routes/user.route");
 app.use("/users", user);
 app.use("/user", user);
 //-----Routers----
