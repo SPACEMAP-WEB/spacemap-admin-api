@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const ContactController = require("../controllers/contact");
+const ContactController = require("../controllers/contact.controller");
 const wrapper = require("../lib/request-handler");
 
 router.post("/", wrapper(ContactController.createModel));

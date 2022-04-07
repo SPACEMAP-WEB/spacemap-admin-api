@@ -1,5 +1,4 @@
-const req = require("express/lib/request");
-const UserModel = require("../models/user");
+const UserModel = require("../models/user.model");
 
 exports.create = async function (create) {
   let userModels = await UserModel.create(create);

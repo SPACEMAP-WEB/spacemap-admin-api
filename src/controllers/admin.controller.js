@@ -1,5 +1,5 @@
 const { BadRequestException, UnauthorizedException } = require('../common/exceptions')
-const { adminLoginService, changePasswordService } = require('../services/admin')
+const { adminLoginService, changePasswordService } = require('../services/admin.service')
 
 const adminLoginControl = async (req, res) => {
   const { id, password } = req.body
