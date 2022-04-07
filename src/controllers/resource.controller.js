@@ -1,9 +1,7 @@
 const ResourceService = require("../services/resource.service");
 
 exports.createModel = async function (req, res, next) {
-  const { title, content, board_type, attached_resource_files } = req.body;
-  console.log(req.body);
-  let model = await ResourceService.create(title, req.body);
+  let model = await ResourceService.create(req.body);
   return {
     data: model,
     message: "Succesfully Model Created",

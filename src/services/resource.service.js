@@ -1,15 +1,7 @@
 const ResourceModel = require("../models/resource.model");
 
 exports.create = async function (resource) {
-  console.log(resource);
-  let resourceModels = await ResourceModel.insertMany([
-    resource,
-    // {
-    //   title,
-    //   content,
-    //   board_type,
-    // },
-  ]);
+  let resourceModels = await ResourceModel.insertMany([resource]);
   return resourceModels;
 };
 
