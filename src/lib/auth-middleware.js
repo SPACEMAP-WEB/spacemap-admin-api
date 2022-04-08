@@ -47,6 +47,13 @@ const issueAccessToken = async (req, res) => {
   
   const newAccessToken = sign({ id, name }, undefined, 0)
   res.cookie('accessToken', newAccessToken, { httpOnly: true })
+  return {
+    success: true,
+    message: "Successfully accesstoken issued.",
+    data: {
+      accessToken: newAccessToken,
+    },
+  }
 }
 
 module.exports = {
