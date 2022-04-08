@@ -23,14 +23,6 @@ exports.readModel = async function (req, res, next) {
   };
 };
 
-exports.updateModel = async function (req, res, next) {
-  let model = await ContactService.update(req.params.id);
-  return {
-    data: model,
-    message: "Succesfully Model Updated",
-  };
-};
-
 exports.deleteModel = async function (req, res, next) {
   await ContactService.delete(req.params.id);
   return {
