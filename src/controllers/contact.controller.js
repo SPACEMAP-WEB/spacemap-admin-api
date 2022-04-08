@@ -1,7 +1,7 @@
 const ContactService = require("../services/contact.service");
 
 exports.createModel = async function (req, res, next) {
-  let model = await ContactService.create();
+  let model = await ContactService.create( req.body );
   return {
     data: model,
     message: "Succesfully Model Created",

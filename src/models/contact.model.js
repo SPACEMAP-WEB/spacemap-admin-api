@@ -2,8 +2,6 @@ let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 let contactScheme = new Schema({
   created_at: { type: Date, default: Date.now },
-  modified_at: { type: Date },
-  deleted_at: { type: Date },
   name: {
     type: String,
     required: true,

@@ -4,9 +4,8 @@ let userScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   last_logged_at: { type: Date },
   modified_at: { type: Date },
-  deleted_at: { type: Date },
-  id: {
-    type: Number,
+  email: {
+    type: String,
     required: true,
   },
   user_type: {
@@ -26,14 +25,6 @@ let userScheme = new Schema({
     required: true,
   },
   affiliation: {
-    type: String,
-    required: true,
-  },
-  username: {
-    type: String,
-    required: true,
-  },
-  email: {
     type: String,
     required: true,
   },

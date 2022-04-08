@@ -16,10 +16,10 @@ exports.readByID = async function (_id) {
 };
 
 exports.update = async function (_id, update) {
-  let userModel = await UserModel.findByIdAndUpdate({ _id:_id} , update );
+  let userModel = await UserModel.findByIdAndUpdate({ _id } , update );
   return userModel;
 };
 
-exports.delete = async function (_id) {
+exports.delete = async function ( _id ) {
   await UserModel.findByIdAndDelete({ _id });
 };
