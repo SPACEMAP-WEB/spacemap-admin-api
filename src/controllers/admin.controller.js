@@ -1,12 +1,12 @@
 const { BadRequestException, UnauthorizedException } = require('../common/exceptions')
-const { adminLoginService, changePasswordService } = require('../services/admin.service')
+const { adminLoginService, changePasswordService, adminLogoutService } = require('../services/admin.service')
 
 const adminLoginControl = async (req, res) => {
-  const { id, password } = req.body
-  if (!id || !password) {
+  const { id, password, name } = req.body
+  if (!id || !password || !name) {
     throw new BadRequestException('Wrong body info.')
   }
-  const { accessToken, refreshToken } = await adminLoginService(id, password)
+  const { accessToken, refreshToken } = await adminLoginService(id, password, name)
   res
     .cookie('accessToken', accessToken, { httpOnly: true })
     .cookie('refreshToken', refreshToken, { httpOnly: true })
@@ -21,6 +21,11 @@ const adminLoginControl = async (req, res) => {
 }
 
 const adminLogoutControl = async (req, res) => {
+  const { name } = req
+  if (!name) {
+    throw new UnauthorizedException('Login first.')
+  }
+  await adminLogoutService(name)
   res
     .clearCookie('accessToken')
     .clearCookie('refreshToken')

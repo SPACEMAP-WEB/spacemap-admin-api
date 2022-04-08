@@ -11,6 +11,7 @@ const verifyToken = (req, _res, next) => {
     throw new UnauthorizedException(body.name)
   }
   req.id = body.id
+  req.name = body.name
   next()
 }
 
@@ -29,13 +30,14 @@ const issueAccessToken = async (req, res) => {
   if (!refreshVerified) {
     throw new BadRequestException('Login again.')
   }
+  const { name } = body
 
   const adminInfoString = await fs.readFile('admin.informaition.json', 'utf-8')
   if (!adminInfoString) {
     throw new HttpException(500, 'Internal server error. (at : read admin info')
   }
 
-  const realRefreshToken = JSON.parse(adminInfoString).refreshToken
+  const realRefreshToken = JSON.parse(adminInfoString).refreshTokens[`${name}`]
   if (!realRefreshToken) {
     throw new HttpException(500, 'Internal server error. (at : read refresh token from json.')
   }
@@ -43,8 +45,7 @@ const issueAccessToken = async (req, res) => {
     throw new BadRequestException('Login again.')
   }
   
-  const newAccessToken = sign({ id }, undefined, 0)
-
+  const newAccessToken = sign({ id, name }, undefined, 0)
   res.cookie('accessToken', newAccessToken, { httpOnly: true })
 }
 
