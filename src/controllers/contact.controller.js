@@ -1,31 +1,32 @@
-const ContactService = require("../services/contact.service");
+const ContactService = require('../services/contact.service');
 
-exports.createModel = async function (req, res, next) {
-  let model = await ContactService.create( req.body );
+
+exports.createModel = async (req) => {
+  const model = await ContactService.create(req.body);
   return {
     data: model,
-    message: "Succesfully Model Created",
+    message: 'Succesfully Model Created',
   };
 };
-exports.readModels = async function (req, res, next) {
-  let models = await ContactService.read();
+exports.readModels = async () => {
+  const models = await ContactService.read();
   return {
     data: models,
-    message: "Succesfully Models Retrieved",
+    message: 'Succesfully Models Retrieved',
   };
 };
 
-exports.readModel = async function (req, res, next) {
-  let model = await ContactService.readByID(req.params.id);
+exports.readModel = async (req) => {
+  const model = await ContactService.readByID(req.params.id);
   return {
     data: model,
-    message: "Succesfully Model Retrieved",
+    message: 'Succesfully Model Retrieved',
   };
 };
 
-exports.deleteModel = async function (req, res, next) {
-  await ContactService.delete(req.params.id);
+exports.deleteModelbyID = async (req, res, next) => {
+  await ContactService.deleteByID(req.params.id);
   return {
-    message: "Succesfully Model Deleted",
+    message: 'Succesfully Model Deleted',
   };
 };

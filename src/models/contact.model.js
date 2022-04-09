@@ -1,6 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let contactScheme = new Schema({
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+const contactScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   name: {
     type: String,
@@ -19,4 +20,4 @@ let contactScheme = new Schema({
     required: true,
   },
 });
-module.exports = mongoose.model("contact", contactScheme);
+module.exports = mongoose.model('contact', contactScheme);
