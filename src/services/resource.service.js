@@ -10,16 +10,16 @@ exports.read = async () => {
   return resourceModels;
 };
 
-exports.readByID = async (id) => {
-  const resourceModel = await ResourceModel.findById({ id });
+exports.readByID = async (_id) => {
+  const resourceModel = await ResourceModel.findById({ _id });
   return resourceModel;
 };
 
-exports.update = async (id) => {
-  const resourceModel = await ResourceModel.findByIdAndUpdate({ id });
+exports.update = async (_id) => {
+  const resourceModel = await ResourceModel.findByIdAndUpdate({ _id });
   return resourceModel;
 };
 
-exports.deleteByID = async (id) => {
-  await ResourceModel.findByIdAndDelete({ id });
+exports.deleteByID = async (_id) => {
+  await ResourceModel.findByIdAndDelete({ _id });
 };

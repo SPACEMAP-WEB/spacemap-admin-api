@@ -2,7 +2,7 @@
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
-  const model = await ResourceFileService.create();
+  const model = await ResourceFileService.create(req.body);
   return {
     data: model,
     message: 'Succesfully Model Created',
