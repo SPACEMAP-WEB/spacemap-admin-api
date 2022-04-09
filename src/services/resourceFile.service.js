@@ -1,4 +1,4 @@
-const ResourceFileModel = require('../models/contact.model');
+const ResourceFileModel = require('../models/resourceFile.model');
 
 exports.create = async (resourceFile) => {
   const result = await ResourceFileModel.insertMany([resourceFile]);
@@ -20,6 +20,10 @@ exports.update = async (_id) => {
   return result;
 };
 
-exports.deleteByID = async (_id) => {
+exports.deleteModelByPlacesID = async (placesID) => {
+  await ResourceFileModel.findByIdAndDelete({ places_id: placesID });
+};
+
+exports.deleteModelByID = async (_id) => {
   await ResourceFileModel.findByIdAndDelete({ _id });
 };

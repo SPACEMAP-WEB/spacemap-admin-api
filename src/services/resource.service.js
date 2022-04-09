@@ -20,6 +20,6 @@ exports.update = async (_id) => {
   return resourceModel;
 };
 
-exports.deleteByID = async (_id) => {
+exports.deleteModelByID = async (_id) => {
   await ResourceModel.findByIdAndDelete({ _id });
 };

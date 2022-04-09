@@ -5,21 +5,16 @@ const resourceFileScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   modified_at: { type: Date },
   deleted_at: { type: Date },
-  places_id: { required: true },
+  places_id: { type: String, required: true },
   file_name: {
     type: String,
     required: true,
   },
   type: {
     type: String,
-    required: true,
   },
   size: {
     type: Number,
-  },
-  resource_ID: {
-    type: Number,
-    required: true,
   },
   downloaded: {
     type: Number,

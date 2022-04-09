@@ -20,6 +20,6 @@ exports.update = async (id) => {
   return templateModel;
 };
 
-exports.deleteByID = async (id) => {
+exports.deleteModelByID = async (id) => {
   await TemplateModel.findByIdAndDelete({ id });
 };

@@ -20,6 +20,6 @@ exports.update = async (_id, update) => {
   return userModel;
 };
 
-exports.deleteByID = async (_id) => {
+exports.deleteModelByID = async (_id) => {
   await UserModel.findByIdAndDelete({ _id });
 };

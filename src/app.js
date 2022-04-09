@@ -6,6 +6,7 @@ const session = require('express-session');
 const path = require('path');
 const favicon = require('serve-favicon');
 // const fs = require('fs');
+const os = require('os');
 const mongoConnect = require('./lib/mongoose');
 require('dotenv').config();
 
@@ -17,11 +18,16 @@ app.use(
   express.urlencoded({ limit: '1gb', extended: true, parameterLimit: 50000000 })
 );
 
+const options = {
+  uploadDir: os.tmpdir(),
+  autoClean: true,
+};
+
 app.use(favicon(path.join(__dirname, '../public/images', 'favicon.ico')));
 app.set('trust proxy', 'loopback');
 
-app.use(express.static('public'));
-app.use(express.static('script'));
+console.log(__dirname);
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 app.use(cookieParser(''));
 app.use(

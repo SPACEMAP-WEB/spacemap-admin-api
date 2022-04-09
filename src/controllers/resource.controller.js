@@ -24,7 +24,7 @@ exports.readModel = async (req, res, next) => {
   };
 };
 
-exports.updateModel = async (req, res, next) => {
+exports.updateModelByID = async (req, res, next) => {
   const model = await ResourceService.update(req.params.id);
   return {
     data: model,
@@ -32,8 +32,8 @@ exports.updateModel = async (req, res, next) => {
   };
 };
 
-exports.deleteModelbyID = async (req, res, next) => {
-  await ResourceService.deleteByID(req.params.id);
+exports.deleteModelByID = async (req, res, next) => {
+  await ResourceService.deleteModelByID(req.params.id);
   return {
     message: 'Succesfully Model Deleted',
   };

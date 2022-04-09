@@ -2,6 +2,10 @@
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
+  // console.log(req.body);
+  // console.log(req.body);
+  console.log(req.file);
+  // console.log(req.files.file.location);
   const model = await ResourceFileService.create(req.body);
   return {
     data: model,
@@ -16,7 +20,7 @@ exports.readModels = async (req, res, next) => {
   };
 };
 
-exports.readModel = async (req, res, next) => {
+exports.readModelByID = async (req, res, next) => {
   const model = await ResourceFileService.readByID(req.params.id);
   return {
     data: model,
@@ -24,7 +28,7 @@ exports.readModel = async (req, res, next) => {
   };
 };
 
-exports.updateModel = async (req, res, next) => {
+exports.updateModelByID = async (req, res, next) => {
   const model = await ResourceFileService.update(req.params.id);
   return {
     data: model,
@@ -32,8 +36,15 @@ exports.updateModel = async (req, res, next) => {
   };
 };
 
-exports.deleteModelbyID = async (req, res, next) => {
-  await ResourceFileService.deleteByID(req.params.id);
+exports.deleteModelByPlacesID = async (req, res, next) => {
+  await ResourceFileService.deleteModelByPlacesID(req.params.id);
+  return {
+    message: 'Succesfully Model Deleted',
+  };
+};
+
+exports.deleteModelByID = async (req, res, next) => {
+  await ResourceFileService.deleteModelByID(req.params.id);
   return {
     message: 'Succesfully Model Deleted',
   };

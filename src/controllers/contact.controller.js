@@ -24,8 +24,8 @@ exports.readModel = async (req, res, next) => {
   };
 };
 
-exports.deleteModelbyID = async (req, res, next) => {
-  await ContactService.deleteByID(req.params.id);
+exports.deleteModelByID = async (req, res, next) => {
+  await ContactService.deleteModelByID(req.params.id);
   return {
     message: 'Succesfully Model Deleted',
   };
