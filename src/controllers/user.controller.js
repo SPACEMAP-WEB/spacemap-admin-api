@@ -15,6 +15,7 @@ exports.readModels = async (req, res, next) => {
   };
 };
 
+
 exports.readModel = async (req, res, next) => {
   console.log(req.params.id);
   const model = await UserService.readByID(req.params.id);

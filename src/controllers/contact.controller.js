@@ -1,5 +1,6 @@
 const ContactService = require('../services/contact.service');
 
+
 exports.createModel = async (req) => {
   const model = await ContactService.create(req.body);
   return {
@@ -20,14 +21,6 @@ exports.readModel = async (req) => {
   return {
     data: model,
     message: 'Succesfully Model Retrieved',
-  };
-};
-
-exports.updateModel = async (req) => {
-  const model = await ContactService.update(req.params.id);
-  return {
-    data: model,
-    message: 'Succesfully Model Updated',
   };
 };
 
