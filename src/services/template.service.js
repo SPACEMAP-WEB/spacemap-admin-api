@@ -1,25 +1,25 @@
-const TemplateModel = require("../models/template");
+const TemplateModel = require('../models/template.model');
 
-exports.create = async function () {
-  let templateModels = await TemplateModel.insertMany({});
+exports.create = async () => {
+  const templateModels = await TemplateModel.insertMany({});
   return templateModels;
 };
 
-exports.read = async function () {
-  let templateModels = await TemplateModel.find({});
+exports.read = async () => {
+  const templateModels = await TemplateModel.find({});
   return templateModels;
 };
 
-exports.readByID = async function (id) {
-  let templateModel = await TemplateModel.findById({ id: id });
+exports.readByID = async (id) => {
+  const templateModel = await TemplateModel.findById({ id });
   return templateModel;
 };
 
-exports.update = async function (id) {
-  let templateModel = await TemplateModel.findByIdAndUpdate({ id });
+exports.update = async (id) => {
+  const templateModel = await TemplateModel.findByIdAndUpdate({ id });
   return templateModel;
 };
 
-exports.delete = async function (id) {
+exports.deleteByID = async (id) => {
   await TemplateModel.findByIdAndDelete({ id });
 };

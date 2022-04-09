@@ -1,33 +1,25 @@
-const { HttpException } = require("../common/exceptions");
-const ContactModel = require("../models/contact.model");
+const ContactModel = require('../models/contact.model');
 
-exports.create = async function (name, email, subject, message) {
-  let result = await ContactModel.insertMany([
-    {
-      name,
-      email,
-      subject,
-      message,
-    },
-  ]);
+exports.create = async (contactSchema) => {
+  const result = await ContactModel.insertMany([contactSchema]);
   return result;
 };
 
-exports.read = async function () {
-  let result = await ContactModel.find({});
+exports.read = async () => {
+  const result = await ContactModel.find({});
   return result;
 };
 
-exports.readByID = async function (id) {
-  let result = await ContactModel.findById({ id: id });
+exports.readByID = async (id) => {
+  const result = await ContactModel.findById({ id });
   return result;
 };
 
-exports.update = async function () {
-  let result = await ContactModel.findByIdAndUpdate({});
+exports.update = async () => {
+  const result = await ContactModel.findByIdAndUpdate({});
   return result;
 };
 
-exports.delete = async function () {
+exports.deleteByID = async () => {
   await ContactModel.findByIdAndDelete({});
 };

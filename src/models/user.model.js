@@ -1,6 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let userScheme = new Schema({
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+const userScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   last_logged_at: { type: Date },
   modified_at: { type: Date },
@@ -38,4 +39,4 @@ let userScheme = new Schema({
     required: true,
   },
 });
-module.exports = mongoose.model("user", userScheme);
+module.exports = mongoose.model('user', userScheme);

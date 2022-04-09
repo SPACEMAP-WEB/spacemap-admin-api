@@ -1,6 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let resourceFileScheme = new Schema({
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+const resourceFileScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   modified_at: { type: Date },
   deleted_at: { type: Date },
@@ -14,14 +15,14 @@ let resourceFileScheme = new Schema({
     required: true,
   },
   size: {
-    type: int,
+    type: Number,
   },
   resource_ID: {
-    type: int,
+    type: Number,
     required: true,
   },
   downloaded: {
-    type: int,
+    type: Number,
   },
 });
-module.exports = mongoose.model("resourceFile", resourceFileScheme);
+module.exports = mongoose.model('resourceFile', resourceFileScheme);
