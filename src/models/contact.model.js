@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const contactScheme = new Schema({
   created_at: { type: Date, default: Date.now },
-  modified_at: { type: Date },
-  deleted_at: { type: Date },
   name: {
     type: String,
     required: true,

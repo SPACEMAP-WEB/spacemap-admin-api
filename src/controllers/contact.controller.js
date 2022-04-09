@@ -24,14 +24,6 @@ exports.readModel = async (req, res, next) => {
   };
 };
 
-exports.updateModel = async (req, res, next) => {
-  const model = await ContactService.update(req.params.id);
-  return {
-    data: model,
-    message: 'Succesfully Model Updated',
-  };
-};
-
 exports.deleteModelbyID = async (req, res, next) => {
   await ContactService.deleteByID(req.params.id);
   return {
