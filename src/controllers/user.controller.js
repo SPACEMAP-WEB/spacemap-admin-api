@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const UserService = require('../services/user.service');
 
 exports.createModel = async (req, res, next) => {
@@ -16,7 +17,6 @@ exports.readModels = async (req, res, next) => {
 };
 
 exports.readModel = async (req, res, next) => {
-  console.log(req.params.id);
   const model = await UserService.readByID(req.params.id);
   return {
     data: model,
@@ -38,3 +38,4 @@ exports.deleteModelbyID = async (req, res, next) => {
     message: 'Succesfully Model Deleted',
   };
 };
+/* eslint-disable no-unused-vars */

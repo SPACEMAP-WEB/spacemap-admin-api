@@ -41,7 +41,7 @@ const issueAccessToken = async (req, res) => {
   if (!adminInfoString) {
     throw new HttpException(
       500,
-      'Internal server error. (at : read admin info',
+      'Internal server error. (at : read admin info'
     );
   }
 
@@ -49,7 +49,7 @@ const issueAccessToken = async (req, res) => {
   if (!realRefreshToken) {
     throw new HttpException(
       500,
-      'Internal server error. (at : read refresh token from json.',
+      'Internal server error. (at : read refresh token from json.'
     );
   }
   if (realRefreshToken !== refreshToken) {

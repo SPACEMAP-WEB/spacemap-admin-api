@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const {
   BadRequestException,
   UnauthorizedException,
@@ -16,7 +17,7 @@ const adminLoginControl = async (req, res) => {
   const { accessToken, refreshToken } = await adminLoginService(
     id,
     password,
-    name,
+    name
   );
   res
     .cookie('accessToken', accessToken, { httpOnly: true })
@@ -65,3 +66,4 @@ module.exports = {
   adminLogoutControl,
   changePasswordControl,
 };
+/* eslint-disable no-unused-vars */

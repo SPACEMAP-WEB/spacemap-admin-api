@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -83,3 +84,5 @@ app.use((_req, res, next) => {
   });
   next();
 });
+
+/* eslint-disable no-unused-vars */

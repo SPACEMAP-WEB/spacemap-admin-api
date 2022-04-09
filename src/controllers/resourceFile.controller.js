@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
@@ -37,3 +38,4 @@ exports.deleteModelbyID = async (req, res, next) => {
     message: 'Succesfully Model Deleted',
   };
 };
+/* eslint-disable no-unused-vars */

@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 const TemplateService = require('../services/template.service');
 
 exports.createModel = async (req, res, next) => {
-  const model = await TemplateService.create();
+  const model = await TemplateService.create(req.body);
   return {
     data: model,
     message: 'Succesfully Model Created',
@@ -24,7 +25,7 @@ exports.readModel = async (req, res, next) => {
 };
 
 exports.updateModel = async (req, res, next) => {
-  const model = await TemplateService.update(req.params.id);
+  const model = await TemplateService.update(req.params.id, req.body);
   return {
     data: model,
     message: 'Succesfully Model Updated',
@@ -37,3 +38,4 @@ exports.deleteModelbyID = async (req, res, next) => {
     message: 'Succesfully Model Deleted',
   };
 };
+/* eslint-disable no-unused-vars */

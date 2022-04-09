@@ -5,29 +5,31 @@ const refreshSecret = process.env.REFRESH_SECRET || 'REFRESH_SECRET_FOR_TEST';
 const issuer = process.env.JWT_ISSUER || 'SPACEMAP';
 const algorithm = process.env.JWT_ALGO || 'HS256';
 
-const sign = (payload, options, refreshFlag) => jwt.sign(payload, refreshFlag ? refreshSecret : accessSecret, {
-  algorithm,
-  expiresIn: refreshFlag ? '15d' : '20m',
-  issuer,
-  ...options,
-});
+const sign = (payload, options, refreshFlag) =>
+  jwt.sign(payload, refreshFlag ? refreshSecret : accessSecret, {
+    algorithm,
+    expiresIn: refreshFlag ? '15d' : '20m',
+    issuer,
+    ...options,
+  });
 
-const verify = (token, refreshFlag) => jwt.verify(
-  token,
-  refreshFlag ? refreshSecret : accessSecret,
-  (err, decoded) => {
-    if (err) {
+const verify = (token, refreshFlag) =>
+  jwt.verify(
+    token,
+    refreshFlag ? refreshSecret : accessSecret,
+    (err, decoded) => {
+      if (err) {
+        return {
+          verified: false,
+          body: err,
+        };
+      }
       return {
-        verified: false,
-        body: err,
+        verified: true,
+        body: decoded,
       };
     }
-    return {
-      verified: true,
-      body: decoded,
-    };
-  },
-);
+  );
 
 module.exports = {
   sign,

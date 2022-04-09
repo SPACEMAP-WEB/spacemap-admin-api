@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 const ContactService = require('../services/contact.service');
 
-exports.createModel = async (req) => {
+exports.createModel = async (req, res, next) => {
   const model = await ContactService.create(req.body);
   return {
     data: model,
     message: 'Succesfully Model Created',
   };
 };
-exports.readModels = async () => {
+exports.readModels = async (req, res, next) => {
   const models = await ContactService.read();
   return {
     data: models,
@@ -15,7 +16,7 @@ exports.readModels = async () => {
   };
 };
 
-exports.readModel = async (req) => {
+exports.readModel = async (req, res, next) => {
   const model = await ContactService.readByID(req.params.id);
   return {
     data: model,
@@ -23,7 +24,7 @@ exports.readModel = async (req) => {
   };
 };
 
-exports.updateModel = async (req) => {
+exports.updateModel = async (req, res, next) => {
   const model = await ContactService.update(req.params.id);
   return {
     data: model,
@@ -37,3 +38,4 @@ exports.deleteModelbyID = async (req, res, next) => {
     message: 'Succesfully Model Deleted',
   };
 };
+/* eslint-disable no-unused-vars */
