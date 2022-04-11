@@ -4,7 +4,6 @@ const { Schema } = mongoose;
 const resourceFileScheme = new Schema({
   createdAt: { type: Date, default: Date.now },
   modifiedAt: { type: Date },
-  deletedAt: { type: Date },
   placesID: { type: String, required: true },
   originalName: {
     type: String,
@@ -20,7 +19,6 @@ const resourceFileScheme = new Schema({
   size: {
     type: Number,
   },
-
   downloaded: {
     type: Number,
   },
