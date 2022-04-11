@@ -3,6 +3,7 @@
     "start:dev": "nodemon ./src/app.js --ignore ./admin.information.json"
   },
   "dependencies": {
+    "aws-sdk": "^2.1111.0",
     "ball": "^0.1.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
