@@ -1,6 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let adminScheme = new Schema({
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+const adminScheme = new Schema({
   id: {
     type: String,
     required: true,
@@ -18,8 +19,8 @@ let adminScheme = new Schema({
       },
       refreshtoken: {
         type: String,
-      }
+      },
     },
   ],
 });
-module.exports = mongoose.model("admin", adminScheme);
+module.exports = mongoose.model('admin', adminScheme);

@@ -8,7 +8,7 @@ const algorithm = process.env.JWT_ALGO || 'HS256';
 const sign = (payload, options, refreshFlag) =>
   jwt.sign(payload, refreshFlag ? refreshSecret : accessSecret, {
     algorithm,
-    expiresIn: refreshFlag ? '15d' : '20m',
+    expiresIn: refreshFlag ? '15d' : '15m',
     issuer,
     ...options,
   });
@@ -18,12 +18,11 @@ const verify = (token, refreshFlag) =>
     token,
     refreshFlag ? refreshSecret : accessSecret,
     (err, decoded) => {
-      if (err) {
+      if (err)
         return {
           verified: false,
           body: err,
         };
-      }
       return {
         verified: true,
         body: decoded,
