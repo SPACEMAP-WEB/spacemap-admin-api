@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const resourceScheme = new Schema({
-  created_at: { type: Date, default: Date.now },
-  modified_at: { type: Date },
+  createdAt: { type: Date, default: Date.now },
+  modifiedAt: { type: Date },
   title: {
     type: String,
     required: true,
@@ -12,7 +12,7 @@ const resourceScheme = new Schema({
     type: String,
     required: true,
   },
-  board_type: {
+  boardType: {
     type: String,
     required: true,
   },

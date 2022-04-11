@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const resourceFileScheme = new Schema({
-  created_at: { type: Date, default: Date.now },
-  modified_at: { type: Date },
-  deleted_at: { type: Date },
-  places_id: { type: String, required: true },
-  file_name: {
+  createdAt: { type: Date, default: Date.now },
+  modifiedAt: { type: Date },
+  deletedAt: { type: Date },
+  placesID: { type: String, required: true },
+  originalName: {
     type: String,
     required: true,
+  },
+  location: {
+    type: String,
+    require: true,
   },
   type: {
     type: String,
@@ -16,6 +20,7 @@ const resourceFileScheme = new Schema({
   size: {
     type: Number,
   },
+
   downloaded: {
     type: Number,
   },
