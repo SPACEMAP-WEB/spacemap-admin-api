@@ -7,10 +7,23 @@ const path = require('path');
 const favicon = require('serve-favicon');
 // const fs = require('fs');
 const os = require('os');
+const cors = require('cors');
 const mongoConnect = require('./lib/mongoose');
 require('dotenv').config();
 
 const app = express();
+
+// temporary cors -> will be changed with configuration.
+const domains = ['http://localhost:4000'];
+
+const corsOptions = {
+  origin(origin, callback) {
+    const isTrue = domains.indexOf(origin) !== -1;
+    callback(null, isTrue);
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.use(morgan('common'));
 app.use(express.json({ limit: '1gb', extended: true }));

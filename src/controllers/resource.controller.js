@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const ResourceService = require('../services/resource.service');
 
-exports.createModel = async (req, res, next) => {
+exports.createModel = async (req, _res, _next) => {
   const model = await ResourceService.create(req.body);
   return {
     data: model,

@@ -5,6 +5,7 @@ exports.createModel = async (req, res, next) => {
   // console.log(req.body);
   // console.log(req.body);
   console.log(req.file);
+  console.log(req.body);
   // console.log(req.files.file.location);
   const model = await ResourceFileService.create(req.body);
   return {

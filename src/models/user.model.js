@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const userScheme = new Schema({
-  created_at: { type: Date, default: Date.now },
-  last_logged_at: { type: Date },
-  modified_at: { type: Date },
+  createdAt: { type: Date, default: Date.now },
+  lastLoggedAt: { type: Date },
+  modifiedAt: { type: Date },
   email: {
     type: String,
     required: true,
   },
-  user_type: {
+  userType: {
     type: String,
     required: true,
   },
@@ -17,11 +17,11 @@ const userScheme = new Schema({
     type: String,
     required: true,
   },
-  firstname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
   },

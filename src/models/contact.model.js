@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const contactScheme = new Schema({
-  created_at: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
   name: {
     type: String,
     required: true,
