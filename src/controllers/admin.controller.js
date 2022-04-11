@@ -1,66 +1,63 @@
-const { BadRequestException, UnauthorizedException } = require('../common/exceptions')
-const { getAdminInfoService, adminLoginService, changePasswordService, adminLogoutService, issueTokenService } = require('../services/admin.service')
-
-const getAdminInfoControl = async (req, res) => {
-  const { id } = req.query
-  if (!id) {
-    throw new BadRequestException('Wrong body info.')
-  }
-  return {
-    data: await getAdminInfoService(id),
-  }
-}
+/* eslint-disable no-unused-vars */
+const {
+  BadRequestException,
+  UnauthorizedException,
+} = require('../common/exceptions');
+const {
+  adminLoginService,
+  changePasswordService,
+  adminLogoutService,
+} = require('../services/admin.service');
 
 const adminLoginControl = async (req, res) => {
-  res
-    .clearCookie('accesstoken')
-    .clearCookie('refreshtoken')
-  const { id, password, name } = req.body
+  const { id, password, name } = req.body;
   if (!id || !password || !name) {
-    throw new BadRequestException('Wrong body info.')
+    throw new BadRequestException('Wrong body info.');
   }
-  const { accesstoken, refreshtoken } = await adminLoginService(id, password, name)
+  const { accessToken, refreshToken } = await adminLoginService(
+    id,
+    password,
+    name
+  );
   res
-    .cookie('accesstoken', accesstoken, { httpOnly: true })
-    .cookie('refreshtoken', refreshtoken, { httpOnly: true })
+    .cookie('accessToken', accessToken, { httpOnly: true })
+    .cookie('refreshToken', refreshToken, { httpOnly: true });
   return {
     message: 'Login success.',
     data: {
-      accesstoken,
-      refreshtoken,
-    }
-  }
-}
+      accessToken,
+      refreshToken,
+    },
+  };
+};
 
 const adminLogoutControl = async (req, res) => {
-  const { id, name } = req
-  if (!id || !name) {
-    throw new UnauthorizedException('Login first.')
+  const { name } = req;
+  if (!name) {
+    throw new UnauthorizedException('Login first.');
   }
-  await adminLogoutService(id, name)
-  res
-    .clearCookie('accesstoken')
-    .clearCookie('refreshtoken')
+  await adminLogoutService(name);
+  res.clearCookie('accessToken').clearCookie('refreshToken');
   return {
     message: 'Logout success.',
-  }
-}
+  };
+};
 
 const changePasswordControl = async (req, res) => {
-  const { id, fromPassword, toPassword } = req.body
+  const { id, fromPassword, toPassword } = req.body;
   if (!id || !fromPassword || !toPassword) {
-    throw new BadRequestException('Wrong body info.')
+    throw new BadRequestException('Wrong body info.');
   }
   if (req.id !== id) {
-    throw new UnauthorizedException('Login again.')
+    throw new UnauthorizedException('Login again.');
   }
 
-  await changePasswordService(id, fromPassword, toPassword)
+  await changePasswordService(id, fromPassword, toPassword);
   return {
     success: true,
-    message: 'Password has successfully changed.'
-  }
-}
+    message: 'Password has successfully changed.',
+  };
+};
 
 const issueTokenControl = async (req, res) => {
   const { accesstoken, refreshtoken } = req.cookies
@@ -79,9 +76,8 @@ const issueTokenControl = async (req, res) => {
 }
 
 module.exports = {
-  getAdminInfoControl,
-  adminLoginControl, 
+  adminLoginControl,
   adminLogoutControl,
   changePasswordControl,
-  issueTokenControl,
-}
+};
+/* eslint-disable no-unused-vars */

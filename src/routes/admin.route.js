@@ -1,12 +1,19 @@
-const router = require('express').Router()
-const { getAdminInfoControl, adminLoginControl, adminLogoutControl, changePasswordControl, issueTokenControl  } = require('../controllers/admin.controller')
-const { verifyToken } = require('../lib/auth-middleware')
-const wrapper = require('../lib/request-handler')
+const router = require('express').Router();
+const {
+  adminLoginControl,
+  adminLogoutControl,
+  changePasswordControl,
+} = require('../controllers/admin.controller');
+const { verifyToken, issueAccessToken } = require('../lib/auth-middleware');
+const wrapper = require('../lib/request-handler');
 
-router.get('/', verifyToken, wrapper(getAdminInfoControl))
-router.post('/login', wrapper(adminLoginControl))
-router.post('/logout', verifyToken, wrapper(adminLogoutControl))
-router.put('/password', verifyToken, wrapper(changePasswordControl))
-router.get('/accesstoken', wrapper(issueTokenControl))
+router.get('/', async (_req, res) => {
+  res.json({});
+});
 
-module.exports = router
+router.post('/login', wrapper(adminLoginControl));
+router.post('/logout', verifyToken, wrapper(adminLogoutControl));
+router.put('/password', verifyToken, wrapper(changePasswordControl));
+router.get('/accesstoken', wrapper(issueAccessToken));
+
+module.exports = router;

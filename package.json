@@ -3,18 +3,32 @@
     "start:dev": "nodemon ./src/app.js --ignore ./admin.information.json"
   },
   "dependencies": {
+    "ball": "^0.1.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "express": "^4.17.3",
+    "express-form-data": "^2.0.17",
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
     "mongoose-sequence": "^5.3.1",
     "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "multer-s3": "^2.10.0",
+    "path": "^0.12.7",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15",
-    "prettier": "2.6.1"
+    "prettier": "^2.6.2"
   }
 }

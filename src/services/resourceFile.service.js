@@ -1,32 +1,29 @@
-const ResourceFileModel = require("../models/contact.model");
+const ResourceFileModel = require('../models/resourceFile.model');
 
-exports.create = async function (name, email, subject, message) {
-  let result = await ResourceFileModel.insertMany([
-    {
-      name,
-      email,
-      subject,
-      message,
-    },
-  ]);
+exports.create = async (resourceFile) => {
+  const result = await ResourceFileModel.insertMany([resourceFile]);
   return result;
 };
 
-exports.read = async function () {
-  let result = await ResourceFileModel.find({});
+exports.read = async () => {
+  const result = await ResourceFileModel.find({});
   return result;
 };
 
-exports.readByID = async function (id) {
-  let result = await ResourceFileModel.findById({ id: id });
+exports.readByID = async (_id) => {
+  const result = await ResourceFileModel.findById({ _id });
   return result;
 };
 
-exports.update = async function () {
-  let result = await ResourceFileModel.findByIdAndUpdate({});
+exports.update = async (_id) => {
+  const result = await ResourceFileModel.findByIdAndUpdate({ _id });
   return result;
 };
 
-exports.delete = async function () {
-  await ResourceFileModel.findByIdAndDelete({});
+exports.deleteModelByPlacesID = async (placesID) => {
+  await ResourceFileModel.findByIdAndDelete({ places_id: placesID });
+};
+
+exports.deleteModelByID = async (_id) => {
+  await ResourceFileModel.findByIdAndDelete({ _id });
 };

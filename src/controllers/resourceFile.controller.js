@@ -1,39 +1,52 @@
-const ResourceFileService = require("../services/resourceFile.service");
+/* eslint-disable no-unused-vars */
+const ResourceFileService = require('../services/resourceFile.service');
 
-exports.createModel = async function (req, res, next) {
-  let model = await ResourceFileService.create();
+exports.createModel = async (req, res, next) => {
+  // console.log(req.body);
+  // console.log(req.body);
+  console.log(req.file);
+  // console.log(req.files.file.location);
+  const model = await ResourceFileService.create(req.body);
   return {
     data: model,
-    message: "Succesfully Model Created",
+    message: 'Succesfully Model Created',
   };
 };
-exports.readModels = async function (req, res, next) {
-  let models = await ResourceFileService.read();
+exports.readModels = async (req, res, next) => {
+  const models = await ResourceFileService.read();
   return {
     data: models,
-    message: "Succesfully Models Retrieved",
+    message: 'Succesfully Models Retrieved',
   };
 };
 
-exports.readModel = async function (req, res, next) {
-  let model = await ResourceFileService.readByID(req.params.id);
+exports.readModelByID = async (req, res, next) => {
+  const model = await ResourceFileService.readByID(req.params.id);
   return {
     data: model,
-    message: "Succesfully Model Retrieved",
+    message: 'Succesfully Model Retrieved',
   };
 };
 
-exports.updateModel = async function (req, res, next) {
-  let model = await ResourceFileService.update(req.params.id);
+exports.updateModelByID = async (req, res, next) => {
+  const model = await ResourceFileService.update(req.params.id);
   return {
     data: model,
-    message: "Succesfully Model Updated",
+    message: 'Succesfully Model Updated',
   };
 };
 
-exports.deleteModel = async function (req, res, next) {
-  await ResourceFileService.delete(req.params.id);
+exports.deleteModelByPlacesID = async (req, res, next) => {
+  await ResourceFileService.deleteModelByPlacesID(req.params.id);
   return {
-    message: "Succesfully Model Deleted",
+    message: 'Succesfully Model Deleted',
   };
 };
+
+exports.deleteModelByID = async (req, res, next) => {
+  await ResourceFileService.deleteModelByID(req.params.id);
+  return {
+    message: 'Succesfully Model Deleted',
+  };
+};
+/* eslint-disable no-unused-vars */

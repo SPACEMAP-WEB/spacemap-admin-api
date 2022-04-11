@@ -1,6 +1,7 @@
-let mongoose = require("mongoose");
-let Schema = mongoose.Schema;
-let resourceScheme = new Schema({
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+const resourceScheme = new Schema({
   created_at: { type: Date, default: Date.now },
   modified_at: { type: Date },
   title: {
@@ -15,8 +16,8 @@ let resourceScheme = new Schema({
     type: String,
     required: true,
   },
-  attached_resource_files: [
-    { type: Schema.Types.ObjectId, ref: "referenceFile" },
-  ],
+  // attached_resource_files: [
+  //   { type: Schema.Types.ObjectId, ref: 'referenceFile' },
+  // ],
 });
-module.exports = mongoose.model("resource", resourceScheme);
+module.exports = mongoose.model('resource', resourceScheme);
