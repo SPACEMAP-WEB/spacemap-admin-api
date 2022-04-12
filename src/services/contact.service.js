@@ -1,7 +1,7 @@
 const ContactModel = require('../models/contact.model');
 
 exports.create = async (contactSchema) => {
-  const result = await ContactModel.insertMany([contactSchema]);
+  const result = await ContactModel.create(contactSchema);
   return result;
 };
 
@@ -16,7 +16,7 @@ exports.readByID = async (id) => {
 };
 
 exports.update = async () => {
-  const result = await ContactModel.findByIdAndUpdate({});
+  const result = await ContactModel.findByIdAndUpdate({}).exec();
   return result;
 };
 

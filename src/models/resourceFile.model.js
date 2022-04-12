@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const resourceFileScheme = new Schema({
   createdAt: { type: Date, default: Date.now },
   modifiedAt: { type: Date },
-  placesID: { type: String, required: true },
+  fieldname: { type: String },
+  placesID: { type: String, default: 0 },
   originalName: {
     type: String,
     required: true,

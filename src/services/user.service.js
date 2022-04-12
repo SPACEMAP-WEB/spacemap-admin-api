@@ -16,7 +16,7 @@ exports.readByID = async (_id) => {
 };
 
 exports.update = async (_id, update) => {
-  const userModel = await UserModel.findByIdAndUpdate({ _id }, update);
+  const userModel = await UserModel.findByIdAndUpdate({ _id }, update).exec();
   return userModel;
 };
 

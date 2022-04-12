@@ -12,8 +12,12 @@ router.post(
 router.get('/', wrapper(ResourceFileController.readModels));
 router.get('/:id', wrapper(ResourceFileController.readModelByID));
 router.put('/:id', wrapper(ResourceFileController.updateModelByID));
+router.get(
+  '/places/:placesID',
+  wrapper(ResourceFileController.readModelByPlacesID)
+);
 router.delete(
-  '/places/:places_id',
+  '/places/:placesID',
   wrapper(ResourceFileController.deleteModelByPlacesID)
 );
 router.delete('/:id', wrapper(ResourceFileController.deleteModelByID));

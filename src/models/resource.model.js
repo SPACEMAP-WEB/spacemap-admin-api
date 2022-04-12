@@ -4,6 +4,10 @@ const { Schema } = mongoose;
 const resourceScheme = new Schema({
   createdAt: { type: Date, default: Date.now },
   modifiedAt: { type: Date },
+  boardType: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -12,9 +16,11 @@ const resourceScheme = new Schema({
     type: String,
     required: true,
   },
-  boardType: {
-    type: String,
-    required: true,
+  imagesLocations: {
+    type: Array,
+  },
+  filesLocations: {
+    type: Array,
   },
   // attached_resource_files: [
   //   { type: Schema.Types.ObjectId, ref: 'referenceFile' },

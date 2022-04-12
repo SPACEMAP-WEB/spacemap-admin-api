@@ -26,10 +26,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(morgan('common'));
-app.use(express.json({ limit: '1gb', extended: true }));
-app.use(
-  express.urlencoded({ limit: '1gb', extended: true, parameterLimit: 50000000 })
-);
+app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 const options = {
   uploadDir: os.tmpdir(),
@@ -39,7 +37,6 @@ const options = {
 app.use(favicon(path.join(__dirname, '../public/images', 'favicon.ico')));
 app.set('trust proxy', 'loopback');
 
-console.log(__dirname);
 app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 app.use(cookieParser(''));

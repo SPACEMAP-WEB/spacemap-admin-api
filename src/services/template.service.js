@@ -1,7 +1,7 @@
 const TemplateModel = require('../models/template.model');
 
 exports.create = async () => {
-  const templateModels = await TemplateModel.insertMany({});
+  const templateModels = await TemplateModel.create();
   return templateModels;
 };
 
@@ -16,7 +16,7 @@ exports.readByID = async (id) => {
 };
 
 exports.update = async (id) => {
-  const templateModel = await TemplateModel.findByIdAndUpdate({ id });
+  const templateModel = await TemplateModel.findByIdAndUpdate({ id }).exec();
   return templateModel;
 };
 

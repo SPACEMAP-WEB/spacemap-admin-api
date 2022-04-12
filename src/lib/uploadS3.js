@@ -1,17 +1,3 @@
-// const multer = require('multer');
-
-// const storage = multer.diskStorage({
-//   destination: './public/uploads',
-//   filename(req, file, cb) {
-//     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-//     // console.log(req);
-//     console.log(file);
-//     cb(null, `${file.fieldname}-${uniqueSuffix}`);
-//   },
-// });
-
-// const upload = multer({ storage });
-
 const path = require('path');
 const multer = require('multer');
 const multerS3 = require('multer-s3');

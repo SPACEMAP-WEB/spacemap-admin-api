@@ -1,8 +1,8 @@
 const ResourceModel = require('../models/resource.model');
 
 exports.create = async (resource) => {
-  const resourceModels = await ResourceModel.insertMany([resource]);
-  return resourceModels;
+  const resourceModel = await ResourceModel.create(resource);
+  return resourceModel;
 };
 
 exports.read = async () => {
@@ -16,7 +16,7 @@ exports.readByID = async (_id) => {
 };
 
 exports.update = async (_id) => {
-  const resourceModel = await ResourceModel.findByIdAndUpdate({ _id });
+  const resourceModel = await ResourceModel.findByIdAndUpdate({ _id }).exec();
   return resourceModel;
 };
 
