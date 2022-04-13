@@ -11,6 +11,7 @@ const {
   changePasswordService,
   adminLogoutService,
   issueTokenService,
+  issueTokenAgainService,
 } = require('../services/admin.service');
 
 const getAdminInfoControl = async (req, _res) => {
@@ -90,10 +91,30 @@ const issueTokenControl = async (req, res) => {
   };
 };
 
+const issueTokenAgainControl = async (req, res) => {
+  res.clearCookie('accesstoken').clearCookie('refreshtoken');
+  const { id, name } = req;
+  if (!id || !name) {
+    throw new UnauthorizedException('Login again.');
+  }
+  const { accesstoken, refreshtoken } = await issueTokenAgainService(id, name);
+  res
+    .cookie('accesstoken', accesstoken, { httpOnly: true })
+    .cookie('refreshtoken', refreshtoken, { httpOnly: true });
+  return {
+    message: 'Issue again success.',
+    data: {
+      accesstoken,
+      refreshtoken,
+    },
+  };
+};
+
 module.exports = {
   getAdminInfoControl,
   adminLoginControl,
   adminLogoutControl,
   changePasswordControl,
   issueTokenControl,
+  issueTokenAgainControl,
 };
