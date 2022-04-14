@@ -14,7 +14,7 @@ require('dotenv').config();
 const app = express();
 
 // temporary cors -> will be changed with configuration.
-const domains = ['http://localhost:4000'];
+const domains = ['http://localhost:4000', 'http://localhost:4007'];
 
 const corsOptions = {
   origin(origin, callback) {

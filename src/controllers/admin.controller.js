@@ -65,7 +65,7 @@ const changePasswordControl = async (req, _res) => {
     throw new BadRequestException('Wrong body info.');
   }
   if (req.id !== id) {
-    throw new UnauthorizedException('Login again.');
+    throw new UnauthorizedException('Wrong admin info.');
   }
 
   await changePasswordService(id, fromPassword, toPassword);
