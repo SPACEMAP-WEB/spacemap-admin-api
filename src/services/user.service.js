@@ -1,21 +1,21 @@
 const UserModel = require('../models/user.model');
 
-exports.create = async (create) => {
+exports.createModel = async (create) => {
   const userModels = await UserModel.create(create);
   return userModels;
 };
 
-exports.read = async () => {
+exports.readModel = async () => {
   const userModels = await UserModel.find({});
   return userModels;
 };
 
-exports.readByID = async (_id) => {
+exports.readModelByID = async (_id) => {
   const userModel = await UserModel.findById({ _id });
   return userModel;
 };
 
-exports.update = async (_id, update) => {
+exports.updateModel = async (_id, update) => {
   const userModel = await UserModel.findByIdAndUpdate({ _id }, update).exec();
   return userModel;
 };

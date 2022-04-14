@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const ResourceFileController = require('../controllers/resourceFile.controller');
 const wrapper = require('../lib/request-handler');
-const uploadS3 = require('../lib/uploadS3');
+const { upload } = require('../lib/S3Client');
 
 router.post(
   '/',
-  uploadS3.single('resource-file'),
+  upload.single('file'),
   wrapper(ResourceFileController.createModel)
 );
 
@@ -19,6 +19,10 @@ router.get(
 router.delete(
   '/places/:placesID',
   wrapper(ResourceFileController.deleteModelByPlacesID)
+);
+router.delete(
+  '/file-name/:fileName',
+  wrapper(ResourceFileController.deleteModelByFileName)
 );
 router.delete('/:id', wrapper(ResourceFileController.deleteModelByID));
 

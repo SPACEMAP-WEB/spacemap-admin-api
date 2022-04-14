@@ -22,8 +22,5 @@ const resourceScheme = new Schema({
   filesLocations: {
     type: Array,
   },
-  // attached_resource_files: [
-  //   { type: Schema.Types.ObjectId, ref: 'referenceFile' },
-  // ],
 });
 module.exports = mongoose.model('resource', resourceScheme);

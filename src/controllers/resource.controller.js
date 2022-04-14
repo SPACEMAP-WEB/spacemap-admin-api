@@ -3,11 +3,10 @@ const ResourceService = require('../services/resource.service');
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
-  // const model = await ResourceService.create(req.body);
-  const { resourceFiles, imagesLocations, filesLocations } =
-    await ResourceFileService.createModelByResource(req.files);
+  const { resourceFileModels, filesLocations } =
+    await ResourceFileService.createModelCalledByResourceController(req.files);
 
-  const { boardType, title, content } = req.body;
+  const { boardType, title, content, imagesLocations } = req.body;
   const resourceInfo = {
     boardType,
     title,
@@ -15,37 +14,41 @@ exports.createModel = async (req, res, next) => {
     imagesLocations,
     filesLocations,
   };
+  const model = await ResourceService.createModel(resourceInfo);
 
-  const model = await ResourceService.create(resourceInfo);
-
-  // const updated = await resourceFiles.reduce(
-  //   async (updatedResourceFiles, resourceFile) => {
-  //     // console.log('RESOURCEFILE:', resourceFile);
-  //     // console.log(model.id);
-  //     console.log(updatedResourceFiles);
-  //     updatedResourceFiles.push(
-  //       await ResourceFileService.updatePlacesIDOfModel(resourceFile, {
-  //         placesID: model.id,
-  //       })
-  //     );
-  //   },
-  //   Promise.resolve()
-  // );
-  const promise = resourceFiles.map(async (resourceFile) => {
-    await ResourceFileService.updatePlacesIDOfModel(resourceFile, {
-      placesID: model.id,
+  let willBeAtachedPlaceIDResourceFileModels = [];
+  if (Array.isArray(imagesLocations)) {
+    const promise = imagesLocations.map(async (location) => {
+      const resourceModel = await ResourceFileService.readModelsByOption({
+        location,
+      });
+      willBeAtachedPlaceIDResourceFileModels =
+        resourceFileModels.concat(resourceModel);
     });
-  });
-  await Promise.all(promise);
+    await Promise.all(promise);
+  } else {
+    const location = imagesLocations;
+    const resourceModel = await ResourceFileService.readModelsByOption({
+      location,
+    });
+    willBeAtachedPlaceIDResourceFileModels =
+      resourceFileModels.concat(resourceModel);
+  }
 
-  // console.log(updated);
+  await ResourceFileService.updatePlacesIDsOfModels(
+    willBeAtachedPlaceIDResourceFileModels,
+    {
+      placesID: model.id,
+    }
+  );
+
   return {
     data: model,
     message: 'Succesfully Model Created',
   };
 };
 exports.readModels = async (req, res, next) => {
-  const models = await ResourceService.read();
+  const models = await ResourceService.readModels();
   return {
     data: models,
     message: 'Succesfully Models Retrieved',
@@ -53,7 +56,7 @@ exports.readModels = async (req, res, next) => {
 };
 
 exports.readModel = async (req, res, next) => {
-  const model = await ResourceService.readByID(req.params.id);
+  const model = await ResourceService.readModelByID(req.params.id);
   return {
     data: model,
     message: 'Succesfully Model Retrieved',
@@ -61,7 +64,7 @@ exports.readModel = async (req, res, next) => {
 };
 
 exports.updateModelByID = async (req, res, next) => {
-  const model = await ResourceService.update(req.params.id);
+  const model = await ResourceService.updateModel(req.params.id);
   return {
     data: model,
     message: 'Succesfully Model Updated',
@@ -69,6 +72,7 @@ exports.updateModelByID = async (req, res, next) => {
 };
 
 exports.deleteModelByID = async (req, res, next) => {
+  await ResourceFileService.deleteModelByPlacesID(req.params.id);
   await ResourceService.deleteModelByID(req.params.id);
   return {
     message: 'Succesfully Model Deleted',

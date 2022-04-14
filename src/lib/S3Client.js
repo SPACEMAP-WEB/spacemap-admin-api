@@ -2,11 +2,10 @@ const path = require('path');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const AWS = require('aws-sdk');
+require('dotenv').config();
 
 const credentials = new AWS.SharedIniFileCredentials({ profile: 'admin-work' });
 AWS.config.credentials = credentials;
-require('dotenv').config();
-
 const s3 = new AWS.S3({ region: process.env.AWS_REGION });
 
 const upload = multer({
@@ -21,4 +20,10 @@ const upload = multer({
   }),
 });
 
-module.exports = upload;
+const deleteObjectByKey = async (key) => {
+  s3.deleteObject({ Bucket: 'spacemap', Key: key }, (err, data) => {
+    return data;
+  });
+};
+
+module.exports = { upload, deleteObjectByKey };

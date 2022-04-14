@@ -1,18 +1,39 @@
 const ResourceFileModel = require('../models/resourceFile.model');
+const { deleteObjectByKey } = require('../lib/S3Client');
 
-exports.createModel = async (resourceFile) => {
-  const result = await ResourceFileModel.create(resourceFile);
+exports.createModel = async (placesID, file) => {
+  console.log(file);
+  console.log(file.key);
+  const fileName = file.key;
+  const originalName = file.originalname;
+  const type = file.mimetype;
+  const { location } = file;
+  const resourceFileInfo = { placesID, fileName, originalName, location, type };
+  const result = await ResourceFileModel.create(resourceFileInfo);
   return result;
 };
 
 exports.readModels = async () => {
-  const result = await ResourceFileModel.find({});
+  const result = await ResourceFileModel.find();
   return result;
+};
+
+exports.readModelsByOption = async (option) => {
+  const results = await ResourceFileModel.find(option);
+  return results;
 };
 
 exports.readModelByID = async (_id) => {
   const result = await ResourceFileModel.findById({ _id });
   return result;
+};
+
+exports.updatePlacesIDsOfModels = async (models, placesID) => {
+  console.log(models);
+  const promise = models.map(async (resourceFile) => {
+    await this.updatePlacesIDOfModel(resourceFile, placesID);
+  });
+  await Promise.all(promise);
 };
 
 exports.updatePlacesIDOfModel = async (model, updateInfo) => {
@@ -28,32 +49,33 @@ exports.readModelByPlacesID = async (placesID) => {
 };
 
 exports.deleteModelByPlacesID = async (placesID) => {
-  await ResourceFileModel.findOneAndDelete({ placesID });
+  const deleatedModel = await ResourceFileModel.findOneAndDelete({ placesID });
+  await ResourceFileModel.findOneAndDelete(deleatedModel.fileName);
+};
+
+exports.deleteModelByFileName = async (fileName) => {
+  await deleteObjectByKey(fileName.fileName);
+  await ResourceFileModel.findOneAndDelete(fileName);
 };
 
 exports.deleteModelByID = async (_id) => {
   await ResourceFileModel.findByIdAndDelete({ _id });
 };
 
-exports.createModelByResource = async (files) => {
-  const [resourceFiles, filesLocations, imagesLocations] = [[], [], []];
+exports.createModelCalledByResourceController = async (files) => {
+  const [resourceFileModels, filesLocations] = [[], []];
 
   const keys = Object.keys(files);
   const promise = keys.map(async (key) => {
     const filesByKey = files[key];
     const promiseInPromise = filesByKey.map(async (file) => {
-      const fieldName = file.filedname;
-      const originalName = file.originalname;
-      const { location } = file;
-      const resourceFileInfo = { fieldName, originalName, location };
-      const model = await this.createModel(resourceFileInfo);
-      resourceFiles.push(model);
-      if (key === 'files') filesLocations.push(location);
-      else if (key === 'images') imagesLocations.push(location);
+      const model = await this.createModel(0, file);
+      resourceFileModels.push(model);
+      if (key === 'files') filesLocations.push(file.location);
     });
     await Promise.all(promiseInPromise);
   });
   await Promise.all(promise);
 
-  return { resourceFiles, filesLocations, imagesLocations };
+  return { resourceFileModels, filesLocations };
 };

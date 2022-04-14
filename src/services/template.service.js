@@ -1,25 +1,25 @@
 const TemplateModel = require('../models/template.model');
 
-exports.create = async () => {
+exports.createModel = async () => {
   const templateModels = await TemplateModel.create();
   return templateModels;
 };
 
-exports.read = async () => {
+exports.readModel = async () => {
   const templateModels = await TemplateModel.find({});
   return templateModels;
 };
 
-exports.readByID = async (id) => {
-  const templateModel = await TemplateModel.findById({ id });
+exports.readModelByID = async (_id) => {
+  const templateModel = await TemplateModel.findById({ _id });
   return templateModel;
 };
 
-exports.update = async (id) => {
-  const templateModel = await TemplateModel.findByIdAndUpdate({ id }).exec();
+exports.updateModel = async (_id) => {
+  const templateModel = await TemplateModel.findByIdAndUpdate({ _id }).exec();
   return templateModel;
 };
 
-exports.deleteModelByID = async (id) => {
-  await TemplateModel.findByIdAndDelete({ id });
+exports.deleteModelByID = async (_id) => {
+  await TemplateModel.findByIdAndDelete({ _id });
 };

@@ -1,17 +1,17 @@
 const ContactModel = require('../models/contact.model');
 
-exports.create = async (contactSchema) => {
+exports.createModel = async (contactSchema) => {
   const result = await ContactModel.create(contactSchema);
   return result;
 };
 
-exports.read = async () => {
+exports.readModel = async () => {
   const result = await ContactModel.find({});
   return result;
 };
 
-exports.readByID = async (id) => {
-  const result = await ContactModel.findById({ id });
+exports.readModelByID = async (_id) => {
+  const result = await ContactModel.findById({ _id });
   return result;
 };
 

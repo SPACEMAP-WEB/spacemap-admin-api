@@ -1,21 +1,21 @@
 const ResourceModel = require('../models/resource.model');
 
-exports.create = async (resource) => {
+exports.createModel = async (resource) => {
   const resourceModel = await ResourceModel.create(resource);
   return resourceModel;
 };
 
-exports.read = async () => {
+exports.readModels = async () => {
   const resourceModels = await ResourceModel.find({});
   return resourceModels;
 };
 
-exports.readByID = async (_id) => {
+exports.readModelByID = async (_id) => {
   const resourceModel = await ResourceModel.findById({ _id });
   return resourceModel;
 };
 
-exports.update = async (_id) => {
+exports.updateModel = async (_id) => {
   const resourceModel = await ResourceModel.findByIdAndUpdate({ _id }).exec();
   return resourceModel;
 };

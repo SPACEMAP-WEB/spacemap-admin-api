@@ -2,11 +2,10 @@
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
-  const { placesID } = req.body;
-  const originalName = req.file.originalname;
-  const { location } = req.file;
-  const resourceFileInfo = { placesID, originalName, location };
-  const model = await ResourceFileService.createModel(resourceFileInfo);
+  const model = await ResourceFileService.createModel(
+    req.body.placesID,
+    req.file
+  );
   return {
     data: model,
     message: 'Succesfully Model Created',
@@ -43,6 +42,13 @@ exports.readModelByPlacesID = async (req, res, next) => {
   return {
     data: models,
     message: 'Succesfully Models Retrived',
+  };
+};
+
+exports.deleteModelByFileName = async (req, res, next) => {
+  await ResourceFileService.deleteModelByFileName(req.params);
+  return {
+    message: 'Succesfully Model Deleted',
   };
 };
 

@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const ResourceController = require('../controllers/resource.controller');
 const wrapper = require('../lib/request-handler');
-const uploadS3 = require('../lib/uploadS3');
+const { upload } = require('../lib/S3Client');
 
 router.post(
   '/',
-  uploadS3.fields([{ name: 'images' }, { name: 'files' }]),
+  upload.fields([{ name: 'images' }, { name: 'files' }]),
   wrapper(ResourceController.createModel)
 );
 router.get('/', wrapper(ResourceController.readModels));
