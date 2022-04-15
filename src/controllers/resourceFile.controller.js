@@ -11,13 +11,6 @@ exports.createModel = async (req, res, next) => {
     message: 'Succesfully Model Created',
   };
 };
-exports.readModels = async (req, res, next) => {
-  const models = await ResourceFileService.readModels();
-  return {
-    data: models,
-    message: 'Succesfully Models Retrieved',
-  };
-};
 
 exports.readModelByID = async (req, res, next) => {
   const model = await ResourceFileService.readModelByID(req.params.id);

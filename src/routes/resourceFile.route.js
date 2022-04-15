@@ -9,7 +9,6 @@ router.post(
   wrapper(ResourceFileController.createModel)
 );
 
-router.get('/', wrapper(ResourceFileController.readModels));
 router.get('/:id', wrapper(ResourceFileController.readModelByID));
 router.put('/:id', wrapper(ResourceFileController.updateModelByID));
 router.get(

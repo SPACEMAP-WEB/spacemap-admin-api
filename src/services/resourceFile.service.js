@@ -13,11 +13,6 @@ exports.createModel = async (placesID, file) => {
   return result;
 };
 
-exports.readModels = async () => {
-  const result = await ResourceFileModel.find();
-  return result;
-};
-
 exports.readModelsByOption = async (option) => {
   const results = await ResourceFileModel.find(option);
   return results;
@@ -44,7 +39,8 @@ exports.updatePlacesIDOfModel = async (model, updateInfo) => {
 };
 
 exports.readModelByPlacesID = async (placesID) => {
-  const result = await ResourceFileModel.find({ placesID }).exec();
+  console.log(placesID);
+  const result = await ResourceFileModel.find({ placesID });
   return result;
 };
 
