@@ -25,6 +25,9 @@ const corsOptions = {
     const isTrue = domains.indexOf(origin) !== -1;
     callback(null, isTrue);
   },
+  allowHeaders: 'Content-Type',
+  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+  preflightContinue: false,
   credentials: true,
   optionsSuccessStatus: 200,
 };

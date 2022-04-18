@@ -6,6 +6,7 @@ const resourceScheme = new Schema({
   modifiedAt: { type: Date },
   boardType: {
     type: String,
+    lowercase: true,
     required: true,
   },
   title: {
