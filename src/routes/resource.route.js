@@ -1,16 +1,18 @@
 const router = require('express').Router();
 const ResourceController = require('../controllers/resource.controller');
+const { verifyToken } = require('../lib/auth-middleware');
 const wrapper = require('../lib/request-handler');
 const { upload } = require('../lib/S3Client');
 
 router.post(
   '/',
+  verifyToken,
   upload.fields([{ name: 'images' }, { name: 'files' }]),
   wrapper(ResourceController.createModel)
 );
 router.get('/', wrapper(ResourceController.readModels));
 router.get('/:id', wrapper(ResourceController.readModel));
-router.put('/:id', wrapper(ResourceController.updateModelByID));
-router.delete('/:id', wrapper(ResourceController.deleteModelByID));
+router.put('/:id', verifyToken, wrapper(ResourceController.updateModelByID));
+router.delete('/:id', verifyToken, wrapper(ResourceController.deleteModelByID));
 
 module.exports = router;
