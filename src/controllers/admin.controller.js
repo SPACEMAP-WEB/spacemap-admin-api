@@ -36,8 +36,8 @@ const adminLoginControl = async (req, res) => {
     name
   );
   res
-    .cookie('accesstoken', accesstoken, { httpOnly: true })
-    .cookie('refreshtoken', refreshtoken, { httpOnly: true });
+    .cookie('accesstoken', accesstoken, { httpOnly: true, secure: true })
+    .cookie('refreshtoken', refreshtoken, { httpOnly: true, secrue: true });
   return {
     message: 'Login success.',
     data: {
@@ -82,7 +82,7 @@ const issueTokenControl = async (req, res) => {
   }
 
   const { newAccessToken } = await issueTokenService(accesstoken, refreshtoken);
-  res.cookie('accesstoken', newAccessToken, { httpOnly: true });
+  res.cookie('accesstoken', newAccessToken, { httpOnly: true, secure: true });
   return {
     message: 'Successfully accesstoken issued.',
     data: {
@@ -99,8 +99,8 @@ const issueTokenAgainControl = async (req, res) => {
   }
   const { accesstoken, refreshtoken } = await issueTokenAgainService(id, name);
   res
-    .cookie('accesstoken', accesstoken, { httpOnly: true })
-    .cookie('refreshtoken', refreshtoken, { httpOnly: true });
+    .cookie('accesstoken', accesstoken, { httpOnly: true, secure: true })
+    .cookie('refreshtoken', refreshtoken, { httpOnly: true, secure: true });
   return {
     message: 'Issue again success.',
     data: {

@@ -14,7 +14,11 @@ require('dotenv').config();
 const app = express();
 
 // temporary cors -> will be changed with configuration.
-const domains = ['https://admin.spacemap42.com', 'http://localhost:4007'];
+const domains = [
+  'https://admin.spacemap42.com',
+  'http://localhost:4007',
+  'http://localhost:4000',
+];
 
 const corsOptions = {
   origin(origin, callback) {
@@ -51,14 +55,12 @@ app.use(
     secret: [process.env.COOKIE_SECRET, process.env.SESSION_SECRET],
     cookie: {
       httpOnly: true,
-      secure: false,
     },
     name: 'session-cookie',
   })
 );
 
-const port = process.env.PORT || 3007;
-
+const port = process.env.PORT || 3009;
 app.listen(port, () => {
   console.log('Express server has started on port 3007');
 });
