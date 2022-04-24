@@ -91,21 +91,10 @@ const issueTokenControl = async (req, res) => {
   };
 };
 
-const issueTokenAgainControl = async (req, res) => {
-  res.clearCookie('accesstoken').clearCookie('refreshtoken');
-  const { id, name } = req;
-  if (!id || !name) {
-    throw new UnauthorizedException('Login again.');
-  }
-  const { accesstoken, refreshtoken } = await issueTokenAgainService(id, name);
-  res
-    .cookie('accesstoken', accesstoken, { httpOnly: true, secure: true })
-    .cookie('refreshtoken', refreshtoken, { httpOnly: true, secure: true });
+const isLogin = async (req, res) => {
   return {
-    message: 'Issue again success.',
     data: {
-      accesstoken,
-      refreshtoken,
+      login: 'success',
     },
   };
 };
@@ -116,5 +105,5 @@ module.exports = {
   adminLogoutControl,
   changePasswordControl,
   issueTokenControl,
-  issueTokenAgainControl,
+  isLogin,
 };
