@@ -1,8 +1,5 @@
 const bcrypt = require('bcrypt');
-const {
-  BadRequestException,
-  UnauthorizedException,
-} = require('../common/exceptions');
+const { BadRequestException } = require('../common/exceptions');
 const { sign, verify } = require('../lib/jwt');
 const AdminModel = require('../models/admin.model');
 
@@ -97,33 +94,10 @@ const issueTokenService = async (accesstoken, refreshtoken) => {
   };
 };
 
-const issueTokenAgainService = async (id, name) => {
-  const result = await AdminModel.findOne({ id }).exec();
-  if (!result) {
-    throw new UnauthorizedException('Login again.');
-  }
-  const accesstoken = sign({ id, name }, undefined, 0);
-  const refreshtoken = sign({ id, name }, undefined, 1);
-  const index = result.refreshtokens.findIndex(
-    (element) => element.name === name
-  );
-  if (index >= 0) {
-    result.refreshtokens[index].refreshtoken = refreshtoken;
-  } else {
-    result.refreshtokens.push({ name, refreshtoken });
-  }
-  await result.save();
-  return {
-    accesstoken,
-    refreshtoken,
-  };
-};
-
 module.exports = {
   getAdminInfoService,
   adminLoginService,
   adminLogoutService,
   changePasswordService,
   issueTokenService,
-  issueTokenAgainService,
 };
