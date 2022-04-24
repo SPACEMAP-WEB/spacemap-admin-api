@@ -6,7 +6,6 @@ const { upload } = require('../lib/S3Client');
 
 router.post(
   '/',
-  verifyToken,
   upload.fields([{ name: 'images' }, { name: 'files' }]),
   wrapper(ResourceController.createModel)
 );

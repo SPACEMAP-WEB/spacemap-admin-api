@@ -6,7 +6,7 @@ exports.createModel = async (resource) => {
 };
 
 exports.readModels = async () => {
-  const resourceModels = await ResourceModel.find({});
+  const resourceModels = await ResourceModel.find({}).sort({ createdAt: 1 });
   return resourceModels;
 };
 
