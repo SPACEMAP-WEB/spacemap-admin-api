@@ -15,6 +15,13 @@ exports.readModelByID = async (_id) => {
   return resourceModel;
 };
 
+exports.readModelByBoard = async (type) => {
+  const resourceModel = await ResourceModel.find({ boardType: type }).sort({
+    createdAt: 1,
+  });
+  return resourceModel;
+};
+
 exports.updateModel = async (_id) => {
   const resourceModel = await ResourceModel.findByIdAndUpdate({ _id }).exec();
   return resourceModel;

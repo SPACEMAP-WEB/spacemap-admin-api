@@ -10,7 +10,8 @@ router.post(
   wrapper(ResourceController.createModel)
 );
 router.get('/', wrapper(ResourceController.readModels));
-router.get('/:id', wrapper(ResourceController.readModel));
+router.get('/:id', wrapper(ResourceController.readModelByID));
+router.get('/board/:type', wrapper(ResourceController.readModelByBoard));
 router.put('/:id', verifyToken, wrapper(ResourceController.updateModelByID));
 router.delete('/:id', verifyToken, wrapper(ResourceController.deleteModelByID));
 

@@ -16,7 +16,7 @@ const app = express();
 // temporary cors -> will be changed with configuration.
 const domains = [
   'https://admin.spacemap42.com',
-  'http://localhost:4007',
+  'http://localhost:4006',
   'http://localhost:4000',
 ];
 const corsOptions = {
