@@ -2,8 +2,6 @@ const ResourceFileModel = require('../models/resourceFile.model');
 const { deleteObjectByKey } = require('../lib/S3Client');
 
 exports.createModel = async (placesID, file) => {
-  console.log(file);
-  console.log(file.key);
   const fileName = file.key;
   const originalName = file.originalname;
   const type = file.mimetype;
@@ -24,7 +22,6 @@ exports.readModelByID = async (_id) => {
 };
 
 exports.updatePlacesIDsOfModels = async (models, placesID) => {
-  console.log(models);
   const promise = models.map(async (resourceFile) => {
     await this.updatePlacesIDOfModel(resourceFile, placesID);
   });
@@ -39,7 +36,6 @@ exports.updatePlacesIDOfModel = async (model, updateInfo) => {
 };
 
 exports.readModelByPlacesID = async (placesID) => {
-  console.log(placesID);
   const result = await ResourceFileModel.find({ placesID });
   return result;
 };
