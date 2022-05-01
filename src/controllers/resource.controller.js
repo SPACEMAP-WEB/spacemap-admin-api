@@ -3,8 +3,14 @@ const ResourceService = require('../services/resource.service');
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
-  const { resourceFileModels, filesLocations } =
-    await ResourceFileService.createModelCalledByResourceController(req.files);
+  let resourceFileModels = null;
+  let filesLocations = null;
+  if (req.files) {
+    [resourceFileModels, filesLocations] =
+      await ResourceFileService.createModelCalledByResourceController(
+        req.files
+      );
+  }
 
   const { boardType, title, content, imagesLocations } = req.body;
   const resourceInfo = {
@@ -17,22 +23,24 @@ exports.createModel = async (req, res, next) => {
   const model = await ResourceService.createModel(resourceInfo);
 
   let willBeAtachedPlaceIDResourceFileModels = [];
-  if (Array.isArray(imagesLocations)) {
-    const promise = imagesLocations.map(async (location) => {
+  if (imagesLocations) {
+    if (Array.isArray(imagesLocations)) {
+      const promise = imagesLocations.map(async (location) => {
+        const resourceModel = await ResourceFileService.readModelsByOption({
+          location,
+        });
+        willBeAtachedPlaceIDResourceFileModels =
+          resourceFileModels.concat(resourceModel);
+      });
+      await Promise.all(promise);
+    } else {
+      const location = imagesLocations;
       const resourceModel = await ResourceFileService.readModelsByOption({
         location,
       });
       willBeAtachedPlaceIDResourceFileModels =
         resourceFileModels.concat(resourceModel);
-    });
-    await Promise.all(promise);
-  } else {
-    const location = imagesLocations;
-    const resourceModel = await ResourceFileService.readModelsByOption({
-      location,
-    });
-    willBeAtachedPlaceIDResourceFileModels =
-      resourceFileModels.concat(resourceModel);
+    }
   }
 
   await ResourceFileService.updatePlacesIDsOfModels(
