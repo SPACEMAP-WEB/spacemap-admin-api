@@ -3,8 +3,8 @@ const ResourceService = require('../services/resource.service');
 const ResourceFileService = require('../services/resourceFile.service');
 
 exports.createModel = async (req, res, next) => {
-  let resourceFileModels = null;
-  let filesLocations = null;
+  let resourceFileModels = [];
+  let filesLocations = [];
   if (req.files.files) {
     [resourceFileModels, filesLocations] =
       await ResourceFileService.createModelCalledByResourceController(
