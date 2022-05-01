@@ -42,7 +42,7 @@ exports.readModelByPlacesID = async (placesID) => {
 
 exports.deleteModelByPlacesID = async (placesID) => {
   const deleatedModel = await ResourceFileModel.findOneAndDelete({ placesID });
-  await ResourceFileModel.findOneAndDelete(deleatedModel.fileName);
+  return deleatedModel;
 };
 
 exports.deleteModelByFileName = async (fileName) => {
