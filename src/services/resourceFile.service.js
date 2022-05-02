@@ -69,5 +69,5 @@ exports.createModelCalledByResourceController = async (files) => {
   });
   await Promise.all(promise);
 
-  return { resourceFileModels, filesLocations };
+  return [resourceFileModels, filesLocations];
 };
