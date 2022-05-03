@@ -59,7 +59,7 @@ exports.createModel = async (req, res, next) => {
 };
 exports.readModels = async (req, res, next) => {
   let models;
-  if (req.query) {
+  if (Object.keys(req.query).length !== 0) {
     models = await ResourceService.readsModelByBoard(req.query);
   } else {
     models = await ResourceService.readModels();
