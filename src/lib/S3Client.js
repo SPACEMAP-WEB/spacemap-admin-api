@@ -14,7 +14,7 @@ const upload = multer({
     bucket: 'spacemap',
     key(req, file, cb) {
       const extension = path.extname(file.originalname);
-      cb(null, Date.now().toString() + extension);
+      cb(null, file.originalname + extension);
     },
     acl: 'public-read-write',
   }),

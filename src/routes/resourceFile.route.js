@@ -21,7 +21,6 @@ router.put(
 
 router.get(
   '/places/:placesID',
-  verifyToken,
   wrapper(ResourceFileController.readModelByPlacesID)
 );
 router.delete(

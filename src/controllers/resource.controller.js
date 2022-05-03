@@ -58,7 +58,13 @@ exports.createModel = async (req, res, next) => {
   };
 };
 exports.readModels = async (req, res, next) => {
-  const models = await ResourceService.readModels();
+  let models;
+  if (req.query) {
+    models = await ResourceService.readsModelByBoard(req.query);
+  } else {
+    models = await ResourceService.readModels();
+  }
+
   return {
     data: models,
     message: 'Succesfully Models Retrieved',
@@ -74,9 +80,9 @@ exports.readModelByID = async (req, res, next) => {
 };
 
 exports.readModelByBoard = async (req, res, next) => {
-  const model = await ResourceService.readModelByBoard(req.params.type);
+  const models = await ResourceService.readsModelByBoard(req.params.type);
   return {
-    data: model,
+    data: models,
     message: 'Succesfully Model Retrieved',
   };
 };
