@@ -16,7 +16,7 @@ exports.readModelByID = async (_id) => {
 };
 
 exports.readsModelByBoard = async (type) => {
-  const resourceModel = await ResourceModel.find({ boardType: type }).sort({
+  const resourceModel = await ResourceModel.find({ type }).sort({
     createdAt: 1,
   });
   return resourceModel;
