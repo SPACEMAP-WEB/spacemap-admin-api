@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
+const platformConn = require('../lib/mongoose');
 
 const { Schema } = mongoose;
 const userScheme = new Schema({
   createdAt: { type: Date, default: Date.now },
-  lastLoggedAt: { type: Date },
-  modifiedAt: { type: Date },
   email: {
     type: String,
     required: true,
   },
-  userType: {
+  provider: {
     type: String,
     required: true,
   },
@@ -17,17 +16,13 @@ const userScheme = new Schema({
     type: String,
     required: true,
   },
-  firstName: {
+  nickname: {
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  affiliation: {
+  snsId: {
     type: String,
     required: true,
   },
 });
-module.exports = mongoose.model('user', userScheme);
+module.exports = platformConn.model('user', userScheme);

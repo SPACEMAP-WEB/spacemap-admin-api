@@ -8,6 +8,7 @@ exports.createModel = async (req, res, next) => {
     message: 'Succesfully Model Created',
   };
 };
+
 exports.readModels = async (req, res, next) => {
   const models = await UserService.readModel();
   return {
