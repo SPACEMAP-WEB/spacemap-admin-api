@@ -8,7 +8,7 @@ const favicon = require('serve-favicon');
 // const fs = require('fs');
 const os = require('os');
 const cors = require('cors');
-const mongoConnect = require('./lib/mongoose');
+const mongoConnect = require('mongoose');
 require('dotenv').config();
 
 const app = express();
@@ -60,7 +60,7 @@ app.use(
   })
 );
 
-const port = process.env.PORT || 3007;
+const port = process.env.PORT || 4024;
 // const port = 8080;
 
 app.listen(port, () => {
