@@ -5,13 +5,11 @@ const ResourceFileService = require('../services/resourceFile.service');
 exports.createModel = async (req, res, next) => {
   let resourceFileModels = [];
   let filesLocations = [];
-  console.log('?');
   if (req.files.files) {
     [resourceFileModels, filesLocations] =
       await ResourceFileService.createModelCalledByResourceController(
         req.files
       );
-    console.log('?');
   }
 
   const { boardType, title, content, imagesLocations } = req.body;

@@ -33,7 +33,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(morgan('common'));
-app.use(express.json({ extended: true }));
+app.use(express.json({ extended: true, limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 const options = {

@@ -14,10 +14,11 @@ const upload = multer({
     bucket: 'spacemap',
     key(req, file, cb) {
       const extension = path.extname(file.originalname);
-      cb(null, file.originalname + extension);
+      cb(null, Date.now() + extension);
     },
     acl: 'public-read-write',
   }),
+  limits: { fileSize: 50 * 1024 * 1024 },
 });
 
 const deleteObjectByKey = async (key) => {
