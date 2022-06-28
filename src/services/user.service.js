@@ -23,3 +23,6 @@ exports.updateModel = async (_id, update) => {
 exports.deleteModelByID = async (_id) => {
   await UserModel.findByIdAndDelete({ _id });
 };
+
+exports.changeDB = async (name) => {
+};
